@@ -19,9 +19,11 @@ function addTaxonomies(posts, {taxonomy, name}) {
 
 export const mutations = {
     fillContent(state, payload) {
-        const {posts, pages, tags, categories, options} = payload;
+        const {posts, pages, knowledgeBank, knowledgeBankCategories, tags, categories, options} = payload;
         state.posts = posts;
         state.pages = pages;
+        state.knowledgeBank = knowledgeBank;
+        state.knowledgeBankCategories = knowledgeBankCategories;
         state.tags = tags;
         state.categories = categories;
         state.options = options;
@@ -56,20 +58,24 @@ export const actions = {
 
     const postsReq = axios.get('http://localhost:8888/headless/wp-json/wp/v2/posts');
     const pagesReq = axios.get('http://localhost:8888/headless/wp-json/wp/v2/pages');
+    const knowledgeBankReq = axios.get('http://localhost:8888/headless/wp-json/wp/v2/knowledgebank');
+    const knowledgeBankCategoriesReq = axios.get('http://localhost:8888/headless/wp-json/wp/v2/knowledgebank_categories');
     const optionsReq = axios.get('http://localhost:8888/headless/wp-json/acf/v3/options/options');
     const tagsReq = axios.get('http://localhost:8888/headless/wp-json/wp/v2/tags');
     const categoriesReq = axios.get('http://localhost:8888/headless/wp-json/wp/v2/categories');
 
 // you could also use destructuring to have an array of responses
-const data = await axios.all([postsReq, pagesReq, tagsReq, categoriesReq, optionsReq]).then(
-    axios.spread((posts, pages, tags, categories, options) => {
+const data = await axios.all([postsReq, pagesReq, knowledgeBankReq, knowledgeBankCategoriesReq, tagsReq, categoriesReq, optionsReq]).then(
+    axios.spread((posts, pages, knowledgeBank, knowledgeBankCategories ,tags, categories, options) => {
         //console.log('options', options)
     commit('fillContent', {
         posts: posts.data,
         pages: pages.data,
+        knowledgeBank: knowledgeBank.data,
+        knowledgeBankCategories: knowledgeBankCategories.data,
         tags: tags.data,
         categories: categories.data,
-        options: options.data.acf
+        options: options.data.acf,
     });
 }));
 
@@ -85,6 +91,12 @@ export const getters = {
     getPages: state => {
         return state.pages;
     },
+    getKnowledgeBank: state => {
+        return state.knowledgeBank;
+    },
+    getKnowledgeBankCategories: state => {
+        return state.knowledgeBankCategories;
+    },
     getCategories: state => {
         return state.categories;
     },
@@ -96,35 +108,24 @@ export const getters = {
     },
     getPageBySlug: (_, getters) => (id) => {
         const page = getters.getPages.find((p) => p.slug === id);
-        const options = getters.getOptions;
-        const headerImage = page?.acf.contentImage?.url || options.defaultHeader.sizes.large
-
-        console.log('page', page);
-        return {
-            ...page,
-            headerImage: headerImage,
-        }
+        return page;
     },
     getPostBySlug: (_, getters) => (id) => {
         const post = getters.getPosts.find((p) => p.slug === id);
-        const options = getters.getOptions;
-        const tags = getters.getTags;
-        const categories = getters.getCategories;
-        const headerImage = post.acf.contentImage?.url || options.defaultHeader.sizes.large
-        const postTags = post.tags.map((tagId) => {
-            return tags.find((t) =>t.id === tagId);
-        })
-        const postCategories = post.categories.map((catId) => {
-            return categories.find((c) =>c.id === catId);
-        })
-
-        const res = {
-            ...post,
-            headerImage: headerImage,
-            tags: postTags,
-            categories: postCategories
-        }
-        return res;
+        return post;
+    },
+    getKnowledgebankBySlug: (_, getters) => (slug) => {
+        const post = getters.getKnowledgeBank.find((p) => p.slug === slug);
+        return post;
+    },
+    getKnowledgebankCategoryBySlug: (_, getters) => (slug) => {
+        const post = getters.getKnowledgeBankCategories.find((p) => p.slug === slug);
+        return post;
+    },
+    getPostByKnowledgebankCategory: (_, getters) => (slug) => {
+        const categoryBySlug = getters.getKnowledgebankCategoryBySlug(slug);
+        const postByCategory = getters.getKnowledgeBank.filter((p) => p.knowledgebank_categories.indexOf(categoryBySlug.id) > -1);
+        return postByCategory;
     },
     getCategorybySlug: (_, getters) => (slug) => {
         const categoryBySlug = getters.getCategories.find((c) => c.slug === slug);
@@ -134,5 +135,5 @@ export const getters = {
         const categoryBySlug = getters.getCategorybySlug(slug);
         const postByCategory = getters.getPosts.filter((p) => p.categories.indexOf(categoryBySlug.id) > -1);
         return postByCategory;
-    }
+    },
 }

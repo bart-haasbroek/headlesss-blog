@@ -57,6 +57,7 @@ Vue.directive('tooltip', {
         }
         tooltip.appendChild(tooltipImage);
         tooltip.appendChild(tooltipText);
-        el.appendChild(tooltip);
+        // aanzetten om te activeren
+        //el.appendChild(tooltip);
     }
 })

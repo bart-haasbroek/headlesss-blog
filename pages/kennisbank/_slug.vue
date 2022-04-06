@@ -1,12 +1,10 @@
 <template>
   <div class="page-wrapper">
-    <page-header
-      :image="pageContent.featured_image_url"
-      :title="pageContent.title.rendered"
-    ></page-header>
+    <page-header v-if="headerImage" :image="headerImage"></page-header>
     <div class="content-wrapper content-wrapper--narrow">
-      <!-- <img :src="headerImage" alt="" /> -->
-      <!-- <nuxt-img :src="headerImage"></nuxt-img> -->
+      <breadcrumbs></breadcrumbs>
+    </div>
+    <div class="content-wrapper content-wrapper--narrow">
       <div v-html="pageContent.content.rendered"></div>
     </div>
   </div>
@@ -14,16 +12,6 @@
 
 <script>
 import Vue from "vue";
-
-//todo
-
-//basic layout
-// responsive menu
-// interne links
-//turbo snippets
-// pagination
-// page not exist --> 404
-// faq page
 
 export default Vue.extend({
   head() {
@@ -40,7 +28,12 @@ export default Vue.extend({
   },
   computed: {
     pageContent() {
-      return this.$store.getters.getPageBySlug(this.$route.params.slug);
+      return this.$store.getters.getKnowledgebankBySlug(
+        this.$route.params.slug
+      );
+    },
+    headerImage() {
+      return this.pageContent?.featured_image_url;
     },
   },
 });

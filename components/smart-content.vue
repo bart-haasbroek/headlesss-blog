@@ -8,7 +8,7 @@ export default {
           id: "foo",
         },
         domProps: {
-          innerHTML: this.html.replace(/\s\s+/g, " "), // replace double space
+          innerHTML: this.html ? this.html.replace(/\s\s+/g, " ") : "", // replace double space
         },
         directives: [
           {

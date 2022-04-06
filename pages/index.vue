@@ -1,6 +1,9 @@
 <template>
   <div class="page-wrapper">
-    <page-header title="De titel"></page-header>
+    <page-header
+      title="De titel"
+      :image="pageContent.featured_image_url"
+    ></page-header>
     <div class="content-wrapper">
       <app-grid :columns="3">
         <div>ddssd</div>
@@ -13,8 +16,10 @@
 
 <script>
 export default {
-  created() {
-    this.$store.commit("app/setPagetitle", "Home");
+  computed: {
+    pageContent() {
+      return this.$store.getters.getPageBySlug("home");
+    },
   },
 };
 </script>

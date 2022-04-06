@@ -4,30 +4,22 @@
       <app-grid columns="3">
         <b-card
           no-body
-          v-for="(post, index) in posts"
+          v-for="(category, index) in categories"
           :key="index"
-          :title="post.title.rendered"
+          :title="category.name"
           class="mb-2 w-100"
         >
           <b-card-body>
             <h4>
               <NuxtLink
-                :to="{ name: 'berichten-slug', params: { slug: post.slug } }"
+                :to="{
+                  name: 'kennisbank-categorieen-category',
+                  params: { category: category.slug },
+                }"
               >
-                {{ post.title.rendered }}
+                {{ category.name }}
               </NuxtLink>
             </h4>
-            <p class="card-text">
-              {{ post.acf.contentIntro }}
-            </p>
-
-            <b-button
-              :to="{ name: 'berichten-slug', params: { slug: post.slug } }"
-              nuxt
-              variant="primary"
-            >
-              Lees meer
-            </b-button>
           </b-card-body>
         </b-card>
       </app-grid>
@@ -40,10 +32,9 @@ import Vue from "vue";
 import { mapGetters } from "vuex";
 
 export default Vue.extend({
-  // layout: "basic",
   computed: {
     ...mapGetters({
-      posts: "getPosts",
+      categories: "getKnowledgeBankCategories",
     }),
   },
 });

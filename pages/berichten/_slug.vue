@@ -1,7 +1,7 @@
 <template>
   <div class="page-wrapper">
     <page-header
-      :image="pageContent.headerImage"
+      :image="pageContent.featured_image_url"
       :title="pageContent.title.rendered"
     ></page-header>
     <div class="content-wrapper content-wrapper--narrow">

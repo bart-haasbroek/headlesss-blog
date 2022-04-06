@@ -2,12 +2,23 @@
   <div class="breadcrumbs__wrapper">
     <ul class="breadcrumbs">
       <li class="breadcrumbs__item">
-        <nuxt-link :to="'/'" class="title"> Home </nuxt-link>
+        <nuxt-link :to="'/'" class="title">
+          <b-icon class="home-icon" icon="house-door" />
+          Home
+        </nuxt-link>
       </li>
       <li v-for="(item, i) in breadcrumbs" :key="i" class="breadcrumbs__item">
-        <nuxt-link :to="item.to" class="title">
+        <b-icon class="icon" icon="chevron-right" />
+        <nuxt-link
+          class="title"
+          :to="item.to"
+          v-if="i < breadcrumbs.length - 1"
+        >
           {{ item.title }}
         </nuxt-link>
+        <span v-else>
+          {{ item.title }}
+        </span>
       </li>
     </ul>
   </div>
@@ -38,6 +49,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.home-icon {
+  margin-right: 5px;
+}
+.icon {
+  font-size: 12px;
+}
 .breadcrumbs {
   display: flex;
   list-style-type: none;
@@ -49,6 +66,6 @@ export default {
   }
 }
 .breadcrumbs__item + .breadcrumbs__item {
-  margin-left: 10px;
+  margin-left: 6px;
 }
 </style>
