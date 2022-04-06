@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
+@import "./variables";
 html {
   font-size: 16px;
   word-spacing: 1px;
@@ -12,7 +13,7 @@ html {
 
 body {
   background: #ffe9e9;
-  overflow-y: scroll;
+  overflow-y: hidden;
 }
 
 *,
@@ -60,17 +61,18 @@ input {
   padding-left: 20px;
   padding-right: 20px;
   max-width: 1280px;
+  margin: 0 auto;
 
   &--narrow {
     max-width: 960px;
   }
 }
 
-.card {
-  background: white;
-  border-radius: 10px;
-  padding: 10px;
-}
+// .card {
+//   background: white;
+//   border-radius: 10px;
+//   padding: 10px;
+// }
 
 p:last-child {
   margin-bottom: 0;

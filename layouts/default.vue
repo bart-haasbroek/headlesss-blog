@@ -1,7 +1,10 @@
 <template>
   <main>
+    <nav class="main-navigation hide-sm">
+      <tab-bar :menuItems="menu"></tab-bar>
+    </nav>
     <div class="layout-wrapper">
-      <header>
+      <header class="hide-md">
         <div class="top-bar">
           <b-button
             class="back-button"
@@ -18,10 +21,10 @@
         </div>
       </header>
       <Nuxt />
+      <footer class="mobile-footer show-sm">
+        <tab-bar :menuItems="menu"></tab-bar>
+      </footer>
     </div>
-    <footer>
-      <tab-bar :menuItems="menu"></tab-bar>
-    </footer>
   </main>
 </template>
 
@@ -33,21 +36,26 @@ export default {
         {
           url: "/",
           title: "Home",
-          icon: "house-door"
+          icon: "house-door",
         },
         {
-          url: "/about",
+          url: "/berichten",
+          title: "Berichten",
+          icon: "house-door",
+        },
+        {
+          url: "/over-ons",
           title: "Over de app",
-          icon: "info-circle"
-        }
-      ]
+          icon: "info-circle",
+        },
+      ],
     };
   },
   methods: {
     to() {
       window.history.length > 1 ? this.$router.go(-1) : this.$router.push("/");
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -59,18 +67,17 @@ main {
 }
 
 header {
-  display: flex;
-  align-items: center;
   height: calc(55px + env(safe-area-inset-top));
   background: #ccc;
-  padding: 0 20px;
   padding-top: env(safe-area-inset-top);
 }
 
 .top-bar {
+  display: flex;
+  height: 100%;
   position: relative;
-  text-align: center;
-  width: 100%;
+  justify-content: center;
+  align-items: center;
 }
 .page-title:first-letter {
   text-transform: capitalize;
@@ -92,6 +99,7 @@ header {
 }
 
 .layout-wrapper {
+  height: 100vh;
   grid-template-rows: auto 1fr;
   display: grid;
 }
@@ -99,10 +107,21 @@ header {
 .page-wrapper {
   width: 100%;
   padding-bottom: 20px;
+  overflow-y: scroll;
+}
+
+.content-wrapper {
   padding-top: 20px;
 }
 
-footer {
+.main-navigation {
+  height: 100%;
+  padding: 0 10px;
+  padding-top: 20px;
+  background: #ccc;
+}
+
+.mobile-footer {
   height: calc(50px + env(safe-area-inset-bottom));
   background: #ccc;
   padding: 0 10px;
@@ -118,14 +137,25 @@ footer {
   .page-wrapper {
     margin: 0 auto;
   }
+}
 
-  .layout-wrapper {
-    order: 2;
+.hide-sm {
+  display: block;
+  @media only screen and (max-width: 767px) {
+    display: none;
   }
+}
 
-  footer {
-    height: 100%;
-    padding-top: 60px;
+.hide-md {
+  @media only screen and (min-width: 767px) {
+    display: none;
+  }
+}
+
+.show-sm {
+  display: none;
+  @media only screen and (max-width: 767px) {
+    display: block;
   }
 }
 </style>
