@@ -6,7 +6,9 @@
     ></page-header>
     <div class="content-wrapper content-wrapper--narrow">
       <!-- <img :src="headerImage" alt="" /> -->
-      <!-- <nuxt-img :src="headerImage"></nuxt-img> -->
+      hier:
+      {{ pageContent.featured_image_url }}
+      <nuxt-img :src="pageContent.featured_image_url" quality="75"></nuxt-img>
       <div v-html="pageContent.content.rendered"></div>
     </div>
   </div>
@@ -17,13 +19,17 @@ import Vue from "vue";
 
 //todo
 
-//basic layout
+// basic layout
 // responsive menu
-// interne links
-//turbo snippets
+// Toc
 // pagination
+// interne links
+// turbo snippets
 // page not exist --> 404
 // faq page
+// image optimizer
+// amp pages
+// mail uitzoeken
 
 export default Vue.extend({
   head() {

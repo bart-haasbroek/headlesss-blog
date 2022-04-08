@@ -64,7 +64,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 main {
   height: 100vh;
   display: grid;
@@ -141,26 +141,6 @@ header {
 
   .page-wrapper {
     margin: 0 auto;
-  }
-}
-
-.hide-sm {
-  display: block;
-  @media only screen and (max-width: 767px) {
-    display: none;
-  }
-}
-
-.hide-md {
-  @media only screen and (min-width: 767px) {
-    display: none;
-  }
-}
-
-.show-sm {
-  display: none;
-  @media only screen and (max-width: 767px) {
-    display: block;
   }
 }
 </style>

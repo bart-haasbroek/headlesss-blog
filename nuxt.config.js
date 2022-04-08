@@ -75,7 +75,7 @@ export default {
       xxl: 1536,
       '2xl': 1536
     },
-    domains: ['http://localhost:8888']
+    domains: ['http://localhost', 'github.com', 'http://localhost:8888', 'http://localhost:8888/', 'http://localhost:8888/headless/']
   },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
