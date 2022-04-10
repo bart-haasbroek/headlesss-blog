@@ -1,37 +1,36 @@
 <template>
   <main>
-    <nav class="main-navigation hide-sm">
-      <tab-bar :menuItems="menu"></tab-bar>
-    </nav>
     <div class="layout-wrapper">
-      <header class="hide-md">
-        <div class="top-bar">
-          <b-button
-            class="back-button"
-            variant="link"
-            @click="to"
-            v-if="$nuxt.$route.path !== '/'"
-          >
-            <b-icon class="icon" icon="arrow-left" />
-            Terug
-          </b-button>
-          <p class="page-title">
-            {{ $store.state.app.pageTitle }}
-          </p>
+      <div
+        class="top-bar d-flex hide-sm w-100 content-wrapper align-items-center"
+      >
+        <div class="logo"></div>
+        <div class="d-flex justify-content-end flex-grow-1">
+          <main-navigation :menuItems="menu"></main-navigation>
         </div>
-      </header>
+      </div>
+      <mobile-navigation
+        class="hide-md"
+        :menuItems="menu"
+        :menuIsOpen="menuIsOpen"
+        @onMenuClick="toggleMenu"
+      ></mobile-navigation>
       <Nuxt />
-      <footer class="mobile-footer show-sm">
-        <tab-bar :menuItems="menu"></tab-bar>
-      </footer>
+      <footer class="footer">footer hier</footer>
     </div>
   </main>
 </template>
 
 <script>
 export default {
+  methods: {
+    toggleMenu() {
+      this.menuIsOpen = !this.menuIsOpen;
+    },
+  },
   data() {
     return {
+      menuIsOpen: false,
       menu: [
         {
           url: "/",
@@ -56,91 +55,32 @@ export default {
       ],
     };
   },
-  methods: {
-    to() {
-      window.history.length > 1 ? this.$router.go(-1) : this.$router.push("/");
-    },
-  },
 };
 </script>
 
 <style lang="scss" scoped>
-main {
-  height: 100vh;
-  display: grid;
-  grid-template-rows: 1fr auto;
+.footer {
+  height: 50px;
+  background: var(--color-dark);
 }
-
-header {
-  height: calc(55px + env(safe-area-inset-top));
-  background: #ccc;
-  padding-top: env(safe-area-inset-top);
-}
-
-.top-bar {
-  display: flex;
-  height: 100%;
-  position: relative;
-  justify-content: center;
-  align-items: center;
-}
-.page-title:first-letter {
-  text-transform: capitalize;
-}
-
-.back-button {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  text-decoration: none;
-  left: 0;
-  .icon {
-    position: relative;
-    top: 2px;
-  }
-  &:focus {
-    outline: none;
-  }
+.logo {
+  width: 50px;
+  height: 50px;
+  background: red;
 }
 
 .layout-wrapper {
   height: 100vh;
   grid-template-rows: auto 1fr;
   display: grid;
-}
 
-.page-wrapper {
-  width: 100%;
-  padding-bottom: 20px;
-  overflow-y: scroll;
-}
-
-.content-wrapper {
-  padding-top: 20px;
-}
-
-.main-navigation {
-  height: 100%;
-  padding: 0 10px;
-  padding-top: 20px;
-  background: #ccc;
-}
-
-.mobile-footer {
-  height: calc(50px + env(safe-area-inset-bottom));
-  background: #ccc;
-  padding: 0 10px;
-}
-
-@media only screen and (min-width: 767px) {
-  main {
-    height: 100vh;
-    display: grid;
-    grid-template-columns: auto 1fr;
+  @media only screen and (max-width: 767px) {
+    padding-top: 64px;
   }
+}
 
-  .page-wrapper {
-    margin: 0 auto;
-  }
+.top-bar {
+  padding-top: 16px;
+  padding-bottom: 16px;
 }
 </style>

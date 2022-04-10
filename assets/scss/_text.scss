@@ -1,0 +1,18 @@
+a {
+  color: var(--color-dark);
+  &:hover {
+    text-decoration: none;
+    color: #3c3c3c;
+  }
+}
+
+.text-big {
+  p {
+    font-size: 18px;
+    line-height: 32px;
+  }
+}
+
+p:last-child {
+  margin-bottom: 0;
+}

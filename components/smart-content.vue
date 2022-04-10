@@ -1,7 +1,7 @@
 <script>
 export default {
   render: function (createElement) {
-    let html = this.html.replace(/\s\s+/g, " "); // replace double space
+    let html = this.html ? this.html.replace(/\s\s+/g, " ") : ""; // replace double space
     let array = [...html.matchAll(/<img.* src=\"(.*?)\"/g)];
     array.forEach((match) => {
       const imgUrl = this.$img(match[1]);

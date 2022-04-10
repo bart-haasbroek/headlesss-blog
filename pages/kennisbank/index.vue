@@ -1,6 +1,7 @@
 <template>
   <div class="page-wrapper">
-    <div class="content-wrapper">
+    <page-header title="Kennisbank"></page-header>
+    <div class="content-wrapper page-content--space-top">
       <app-grid columns="3">
         <b-card
           no-body
@@ -32,10 +33,25 @@ import Vue from "vue";
 import { mapGetters } from "vuex";
 
 export default Vue.extend({
+  head() {
+    return {
+      title: this.pageContent.yoast_head_json.title,
+      meta: [
+        {
+          hid: "description",
+          name: "description",
+          content: this.pageContent.yoast_head_json.description,
+        },
+      ],
+    };
+  },
   computed: {
     ...mapGetters({
       categories: "getKnowledgeBankCategories",
     }),
+    pageContent() {
+      return this.$store.getters.getPageBySlug("kennisbank");
+    },
   },
 });
 </script>

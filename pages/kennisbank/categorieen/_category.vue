@@ -1,10 +1,11 @@
 <template>
   <div class="page-wrapper">
-    <page-header v-if="headerImage" :image="headerImage"></page-header>
-    <div class="content-wrapper content-wrapper--narrow">
+    <page-header
+      :image="headerImage"
+      :title="currentCategory.name"
+    ></page-header>
+    <div class="content-wrapper content-wrapper--narrow page-content">
       <breadcrumbs></breadcrumbs>
-    </div>
-    <div class="content-wrapper content-wrapper--narrow">
       <app-grid columns="3">
         <b-card
           no-body

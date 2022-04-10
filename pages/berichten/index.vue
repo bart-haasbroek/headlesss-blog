@@ -1,35 +1,33 @@
 <template>
   <div class="page-wrapper">
-    <div class="content-wrapper">
-      <app-grid columns="3">
-        <b-card
-          no-body
-          v-for="(post, index) in posts"
-          :key="index"
-          :title="post.title.rendered"
-          class="mb-2 w-100"
-        >
-          <b-card-body>
-            <h4>
-              <NuxtLink
-                :to="{ name: 'berichten-slug', params: { slug: post.slug } }"
-              >
-                {{ post.title.rendered }}
-              </NuxtLink>
-            </h4>
-            <p class="card-text">
-              {{ post.acf.contentIntro }}
-            </p>
-
-            <b-button
-              :to="{ name: 'berichten-slug', params: { slug: post.slug } }"
-              nuxt
-              variant="primary"
-            >
-              Lees meer
-            </b-button>
-          </b-card-body>
-        </b-card>
+    <page-header :title="pageContent.title.rendered"></page-header>
+    <div class="content-wrapper page-content">
+      <breadcrumbs></breadcrumbs>
+      <app-grid partion="3-1">
+        <app-grid>
+          <blog-item
+            v-for="(post, index) in posts"
+            :key="index"
+            :item="post"
+          ></blog-item>
+        </app-grid>
+        <div class="category-list">
+          Categorieen
+          <div>
+            <ul>
+              <li v-for="(category, index) in categories" :key="index">
+                <NuxtLink
+                  :to="{
+                    name: 'categorieen-slug',
+                    params: { slug: category.slug },
+                  }"
+                >
+                  {{ category.name }}
+                </NuxtLink>
+              </li>
+            </ul>
+          </div>
+        </div>
       </app-grid>
     </div>
   </div>
@@ -40,13 +38,34 @@ import Vue from "vue";
 import { mapGetters } from "vuex";
 
 export default Vue.extend({
-  // layout: "basic",
+  head() {
+    return {
+      title: this.pageContent.yoast_head_json.title,
+      meta: [
+        {
+          hid: "description",
+          name: "description",
+          content: this.pageContent.yoast_head_json.description,
+        },
+      ],
+    };
+  },
   computed: {
     ...mapGetters({
       posts: "getPosts",
+      categories: "getCategories",
     }),
+    pageContent() {
+      return this.$store.getters.getPageBySlug("berichten");
+    },
   },
 });
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+.category-list {
+  background: #d1d1d1;
+  padding: 10px;
+  border-radius: 10px;
+}
+</style>

@@ -1,10 +1,9 @@
 <template>
   <div class="page-wrapper">
     <page-header :title="currentCategory.name"></page-header>
-    <div class="content-wrapper">
+
+    <div class="content-wrapper page-content">
       <breadcrumbs></breadcrumbs>
-    </div>
-    <div class="content-wrapper">
       <app-grid columns="3">
         <b-card
           no-body

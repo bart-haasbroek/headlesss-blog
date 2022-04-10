@@ -55,6 +55,9 @@ export default {
 .icon {
   font-size: 12px;
 }
+.breadcrumbs__wrapper {
+  margin: 16px 0;
+}
 .breadcrumbs {
   display: flex;
   list-style-type: none;

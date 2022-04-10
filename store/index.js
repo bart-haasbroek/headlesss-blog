@@ -106,8 +106,8 @@ export const getters = {
     getOptions: state => {
         return state.options;
     },
-    getPageBySlug: (_, getters) => (id) => {
-        const page = getters.getPages.find((p) => p.slug === id);
+    getPageBySlug: (_, getters) => (slug) => {
+        const page = getters.getPages.find((p) => p.slug === slug);
         return page;
     },
     getPostBySlug: (_, getters) => (id) => {

@@ -4,10 +4,8 @@
       :image="pageContent.featured_image_url"
       :title="pageContent.title.rendered"
     ></page-header>
-    <div class="content-wrapper content-wrapper--narrow">
+    <div class="content-wrapper content-wrapper--narrow page-content text-big">
       <breadcrumbs></breadcrumbs>
-    </div>
-    <div class="content-wrapper content-wrapper--narrow">
       <!-- <img :src="headerImage" alt="" /> -->
       <!-- <nuxt-img :src="headerImage"></nuxt-img> -->
       <!-- <toc :toc="pageContent.acf.contentText"></toc> -->

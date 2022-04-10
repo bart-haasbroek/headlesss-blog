@@ -1,6 +1,6 @@
 <template>
   <div class="page-wrapper">
-    <div class="content-wrapper">
+    <div class="content-wrapper page-content">
       <app-grid columns="3">
         <b-card
           no-body

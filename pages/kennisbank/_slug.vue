@@ -1,10 +1,8 @@
 <template>
   <div class="page-wrapper">
     <page-header v-if="headerImage" :image="headerImage"></page-header>
-    <div class="content-wrapper content-wrapper--narrow">
+    <div class="content-wrapper content-wrapper--narrow page-content">
       <breadcrumbs></breadcrumbs>
-    </div>
-    <div class="content-wrapper content-wrapper--narrow">
       <div v-html="pageContent.content.rendered"></div>
     </div>
   </div>

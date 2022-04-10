@@ -1,7 +1,10 @@
 <template>
   <div>
     <div class="app-grid__wrapper">
-      <div class="app-grid" :class="'columns-amount-' + columns">
+      <div
+        class="app-grid"
+        :class="['columns-amount-' + columns, 'partion-' + partion]"
+      >
         <slot></slot>
       </div>
     </div>
@@ -12,9 +15,12 @@
 export default {
   props: {
     columns: {
-      default: 2
-    }
-  }
+      default: 2,
+    },
+    partion: {
+      default: 1,
+    },
+  },
 };
 </script>
 
@@ -30,6 +36,14 @@ export default {
 
   &.columns-amount-3 {
     grid-template-columns: repeat(3, 1fr);
+  }
+
+  &.partion-2-1 {
+    grid-template-columns: 2fr 1fr;
+  }
+
+  &.partion-3-1 {
+    grid-template-columns: 3fr 1fr;
   }
 
   @media screen and (max-width: 1000px) {

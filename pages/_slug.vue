@@ -5,11 +5,8 @@
       :title="pageContent.title.rendered"
     ></page-header>
     <div class="content-wrapper content-wrapper--narrow">
-      <!-- <img :src="headerImage" alt="" /> -->
-      hier:
-      {{ pageContent.featured_image_url }}
-      <nuxt-img :src="pageContent.featured_image_url" quality="75"></nuxt-img>
-      <div v-html="pageContent.content.rendered"></div>
+      <breadcrumbs></breadcrumbs>
+      <smart-content :html="pageContent.content.rendered"></smart-content>
     </div>
   </div>
 </template>
