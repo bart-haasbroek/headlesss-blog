@@ -15,9 +15,8 @@
 import Vue from "vue";
 
 //todo
-
-// basic layout
-// responsive menu
+// button stylen
+// globaal dingen opzetten
 // Toc
 // pagination
 // interne links

@@ -4,7 +4,9 @@
       <div
         class="top-bar d-flex hide-sm w-100 content-wrapper align-items-center"
       >
-        <div class="logo"></div>
+        <div class="logo">
+          <nuxt-img :src="$siteConfig.logo" quality="75" />
+        </div>
         <div class="d-flex justify-content-end flex-grow-1">
           <main-navigation :menuItems="menu"></main-navigation>
         </div>
@@ -28,31 +30,10 @@ export default {
       this.menuIsOpen = !this.menuIsOpen;
     },
   },
-  data() {
+  data($siteConfig) {
     return {
       menuIsOpen: false,
-      menu: [
-        {
-          url: "/",
-          title: "Home",
-          icon: "house-door",
-        },
-        {
-          url: "/berichten",
-          title: "Berichten",
-          icon: "house-door",
-        },
-        {
-          url: "/kennisbank",
-          title: "Kennisbank",
-          icon: "house-door",
-        },
-        {
-          url: "/over-ons",
-          title: "Over de app",
-          icon: "info-circle",
-        },
-      ],
+      menu: this.$siteConfig.mainMenu,
     };
   },
 };

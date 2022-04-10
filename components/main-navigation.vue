@@ -1,6 +1,6 @@
 <template>
   <nav class="navigation">
-    <ul>
+    <ul class="d-flex nav-list">
       <li v-for="(menuItem, index) in menuItems" :key="index">
         <nuxtLink :to="menuItem.url">
           {{ menuItem.title }}
@@ -21,11 +21,6 @@ export default {
 <style lang="scss" scoped>
 .navigation {
   ul {
-    list-style-type: none;
-    display: flex;
-    margin: 0;
-    padding: 0;
-
     li {
       a {
         display: block;

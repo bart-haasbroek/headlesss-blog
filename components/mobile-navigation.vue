@@ -10,7 +10,7 @@
     </div>
 
     <div class="mobile-navigation" v-if="menuIsOpen">
-      <ul>
+      <ul class="nav-list">
         <li v-for="(menuItem, index) in menuItems" :key="index">
           <nuxtLink :to="menuItem.url">
             {{ menuItem.title }}
@@ -54,10 +54,6 @@ export default {
   overflow-y: scroll;
   box-shadow: 0px 1px 3px;
   ul {
-    padding: 0;
-    margin: 0;
-    list-style-type: none;
-
     li {
       + li {
         border-top: 1px solid #efefef;

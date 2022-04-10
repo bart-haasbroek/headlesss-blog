@@ -1,38 +1,15 @@
 <template>
   <div class="page-wrapper">
-    <page-header :title="currentCategory.name"></page-header>
+    <page-header :title="'Categorie: ' + currentCategory.name"></page-header>
 
     <div class="content-wrapper page-content">
       <breadcrumbs></breadcrumbs>
       <app-grid columns="3">
-        <b-card
-          no-body
+        <blog-item
           v-for="(post, index) in posts"
           :key="index"
-          :title="post.title.rendered"
-          class="mb-2 w-100"
-        >
-          <b-card-body>
-            <h4>
-              <NuxtLink
-                :to="{ name: 'berichten-slug', params: { slug: post.slug } }"
-              >
-                {{ post.title.rendered }}
-              </NuxtLink>
-            </h4>
-            <p class="card-text">
-              {{ post.acf.contentIntro }}
-            </p>
-
-            <b-button
-              :to="{ name: 'berichten-slug', params: { slug: post.slug } }"
-              nuxt
-              variant="primary"
-            >
-              Lees meer
-            </b-button>
-          </b-card-body>
-        </b-card>
+          :item="post"
+        ></blog-item>
       </app-grid>
     </div>
   </div>

@@ -11,22 +11,24 @@
             :item="post"
           ></blog-item>
         </app-grid>
-        <div class="category-list">
-          Categorieen
-          <div>
-            <ul>
-              <li v-for="(category, index) in categories" :key="index">
-                <NuxtLink
-                  :to="{
-                    name: 'categorieen-slug',
-                    params: { slug: category.slug },
-                  }"
-                >
-                  {{ category.name }}
-                </NuxtLink>
-              </li>
-            </ul>
-          </div>
+        <div>
+          <app-card title="Categorieen">
+            <div class="category-list">
+              <ul class="nav-list">
+                <li v-for="(category, index) in categories" :key="index">
+                  <NuxtLink
+                    class="category-link"
+                    :to="{
+                      name: 'categorieen-slug',
+                      params: { slug: category.slug },
+                    }"
+                  >
+                    {{ category.name }}
+                  </NuxtLink>
+                </li>
+              </ul>
+            </div>
+          </app-card>
         </div>
       </app-grid>
     </div>
@@ -63,9 +65,8 @@ export default Vue.extend({
 </script>
 
 <style lang="scss">
-.category-list {
-  background: #d1d1d1;
-  padding: 10px;
-  border-radius: 10px;
+.category-link {
+  padding: 3px 0;
+  display: block;
 }
 </style>

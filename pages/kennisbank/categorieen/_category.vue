@@ -7,32 +7,15 @@
     <div class="content-wrapper content-wrapper--narrow page-content">
       <breadcrumbs></breadcrumbs>
       <app-grid columns="3">
-        <b-card
-          no-body
-          v-for="(post, index) in posts"
-          :key="index"
-          :title="post.title.rendered"
-          class="mb-2 w-100"
-        >
-          <b-card-body>
-            <h4>
-              <NuxtLink
-                :to="{ name: 'kennisbank-slug', params: { slug: post.slug } }"
-              >
-                {{ post.title.rendered }}
-              </NuxtLink>
-            </h4>
-            <div class="card-text" v-html="post.excerpt.rendered"></div>
-
-            <b-button
+        <app-card v-for="(post, index) in posts" :key="index">
+          <h4>
+            <NuxtLink
               :to="{ name: 'kennisbank-slug', params: { slug: post.slug } }"
-              nuxt
-              variant="primary"
             >
-              Lees meer
-            </b-button>
-          </b-card-body>
-        </b-card>
+              {{ post.title.rendered }}
+            </NuxtLink>
+          </h4>
+        </app-card>
       </app-grid>
     </div>
   </div>

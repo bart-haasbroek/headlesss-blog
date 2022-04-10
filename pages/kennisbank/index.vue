@@ -1,28 +1,20 @@
 <template>
   <div class="page-wrapper">
-    <page-header title="Kennisbank"></page-header>
+    <page-header :title="pageContent.title.rendered"></page-header>
     <div class="content-wrapper page-content--space-top">
       <app-grid columns="3">
-        <b-card
-          no-body
-          v-for="(category, index) in categories"
-          :key="index"
-          :title="category.name"
-          class="mb-2 w-100"
-        >
-          <b-card-body>
-            <h4>
-              <NuxtLink
-                :to="{
-                  name: 'kennisbank-categorieen-category',
-                  params: { category: category.slug },
-                }"
-              >
-                {{ category.name }}
-              </NuxtLink>
-            </h4>
-          </b-card-body>
-        </b-card>
+        <app-card v-for="(category, index) in categories" :key="index">
+          <h4>
+            <NuxtLink
+              :to="{
+                name: 'kennisbank-categorieen-category',
+                params: { category: category.slug },
+              }"
+            >
+              {{ category.name }}
+            </NuxtLink>
+          </h4>
+        </app-card>
       </app-grid>
     </div>
   </div>

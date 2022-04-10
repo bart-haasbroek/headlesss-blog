@@ -45,9 +45,10 @@ export default {
 <style lang="scss">
 .blog-item {
   width: 100%;
-  background: pink;
+  background: var(--color-light);
   border-radius: 12px;
   overflow: hidden;
+  box-shadow: 0px 1px 4px -1px rgba(0, 0, 0, 0.4);
 
   &__title {
     margin: 14px 0 8px;

@@ -4,7 +4,7 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'utilities',
+    title: 'Headless blog',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1.0, viewport-fit=cover' },
@@ -20,20 +20,9 @@ export default {
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: ["@/assets/scss/index.scss"],
 
-  render: {
-    bundleRenderer: {
-      directives: {
-        cww: function (vnode, dir) {
-          const style = vnode.data.style || (vnode.data.style = {})
-          style.backgroundColor = '#ff0016'
-        }
-
-      }
-    }
-  },
-
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    { src: '~/plugins/globals.js' },
     { src: '~/plugins/preview.client.js' },
     { src: '~/plugins/tooltip.client.js' },
   ],
