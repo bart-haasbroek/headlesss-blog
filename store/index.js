@@ -5,82 +5,73 @@ export const state = () => ({
     posts: undefined,
 });
 
-function addTaxonomies(posts, {taxonomy, name}) {
-    posts.map((post) => {
-        const taxonomyList = post.map((taxId) => {
-            return taxonomies.find((t) =>t.id === taxId);
-        })
-        return {
-            ...post,
-            [name]: taxonomyList
-        }
-    })
-}
-
 export const mutations = {
+    // fillContent(state, payload) {
+    //     const {posts, pages, knowledgeBank, knowledgeBankCategories, tags, categories, options} = payload;
+    //     state.posts = posts;
+    //     state.pages = pages;
+    //     state.knowledgeBank = knowledgeBank;
+    //     state.knowledgeBankCategories = knowledgeBankCategories;
+    //     state.tags = tags;
+    //     state.categories = categories;
+    //     state.options = options;
+    // },
     fillContent(state, payload) {
-        const {posts, pages, knowledgeBank, knowledgeBankCategories, tags, categories, options} = payload;
-        state.posts = posts;
-        state.pages = pages;
-        state.knowledgeBank = knowledgeBank;
-        state.knowledgeBankCategories = knowledgeBankCategories;
-        state.tags = tags;
-        state.categories = categories;
-        state.options = options;
+        payload.forEach((content) => {
+            state[content.name] = content.data;
+        })
     },
 }
+
+// const apiEndpoint = 'http://apibase.ga/testsite';
+const apiEndpoint = 'http://localhost:8888/headless';
+const contentModules = [
+    {
+        endpoint: `${apiEndpoint}/wp-json/wp/v2/posts`,
+        name: 'posts'
+    },
+    {
+        endpoint: `${apiEndpoint}/wp-json/wp/v2/pages`,
+        name: 'pages'
+    },
+    {
+        endpoint: `${apiEndpoint}/wp-json/wp/v2/knowledgebank`,
+        name: 'knowledgebank'
+    },
+    {
+        endpoint: `${apiEndpoint}/wp-json/wp/v2/knowledgebank_categories`,
+        name: 'knowledgeBankCategories'
+    },
+];
 
 export const actions = {
     async nuxtServerInit({ commit, state }) {
         console.log('ServerInit');
-        // const { data } = await axios.get('http://localhost:8888/headless/wp-json/wp/v2/posts');
-        // const { data } = await axios.get('http://localhost:8888/headless/wp-json/wp/v2/posts');
-        // Promise.all([
-        //     axios.get('http://localhost:8888/headless/wp-json/wp/v2/posts'),
-        //     axios.get('http://localhost:8888/headless/wp-json/wp/v2/pages')
-        // ]).then((data) => {
-        //     commit('fillContent', data);
-        // })
+        const responses = await Promise.all(contentModules.map(async module => {
+            const res = await axios.get(module.endpoint);
+            return {
+                name: module.name,
+                data: res.data
+            }
+        }));
+        commit('fillContent', responses);
 
-                // const data = await axios.all([
-        //     'http://localhost:8888/headless/wp-json/wp/v2/posts',
-        //     'http://localhost:8888/headless/wp-json/wp/v2/pages'
-        // ].map((endpoint) => axios.get(endpoint)));
-        // console.log('data', data);
+    // const postsReq = axios.get(`${apiEndpoint}/wp-json/wp/v2/posts`);
+    // const pagesReq = axios.get(`${apiEndpoint}/wp-json/wp/v2/pages`);
+    // const knowledgeBankReq = axios.get(`${apiEndpoint}/wp-json/wp/v2/knowledgebank`);
+    // const knowledgeBankCategoriesReq = axios.get(`${apiEndpoint}/wp-json/wp/v2/knowledgebank_categories`);
+    // const optionsReq = axios.get(`${apiEndpoint}/wp-json/acf/v3/options/options`);
+    // const tagsReq = axios.get(`${apiEndpoint}/wp-json/wp/v2/tags`);
+    // const categoriesReq = axios.get(`${apiEndpoint}/wp-json/wp/v2/categories`);
 
-        // console.log('NEEEEEW', state);
-        // if (state.brood === undefined) {
-        //     console.log("DATAAAAAAA", state.brood);
-        // } else {
-        //     console.log('defineddd',state.brood )
-        //     //console.log('geeeeeeen content', state.content);
-        // }
-
-    const postsReq = axios.get('http://localhost:8888/headless/wp-json/wp/v2/posts');
-    const pagesReq = axios.get('http://localhost:8888/headless/wp-json/wp/v2/pages');
-    const knowledgeBankReq = axios.get('http://localhost:8888/headless/wp-json/wp/v2/knowledgebank');
-    const knowledgeBankCategoriesReq = axios.get('http://localhost:8888/headless/wp-json/wp/v2/knowledgebank_categories');
-    const optionsReq = axios.get('http://localhost:8888/headless/wp-json/acf/v3/options/options');
-    const tagsReq = axios.get('http://localhost:8888/headless/wp-json/wp/v2/tags');
-    const categoriesReq = axios.get('http://localhost:8888/headless/wp-json/wp/v2/categories');
-
-// you could also use destructuring to have an array of responses
-const data = await axios.all([postsReq, pagesReq, knowledgeBankReq, knowledgeBankCategoriesReq, tagsReq, categoriesReq, optionsReq]).then(
-    axios.spread((posts, pages, knowledgeBank, knowledgeBankCategories ,tags, categories, options) => {
-        //console.log('options', options)
-    commit('fillContent', {
-        posts: posts.data,
-        pages: pages.data,
-        knowledgeBank: knowledgeBank.data,
-        knowledgeBankCategories: knowledgeBankCategories.data,
-        tags: tags.data,
-        categories: categories.data,
-        options: options.data.acf,
-    });
-}));
-
-
-
+    // // you could also use destructuring to have an array of responses
+    // const data = await axios.all([postsReq, pagesReq]).then(
+    //     axios.spread((posts, pages) => {
+    //     commit('fillContent', {
+    //         posts: posts.data,
+    //         pages: pages.data
+    //     });
+    // }));
     },
 }
 
@@ -92,7 +83,7 @@ export const getters = {
         return state.pages;
     },
     getKnowledgeBank: state => {
-        return state.knowledgeBank;
+        return state.knowledgebank;
     },
     getKnowledgeBankCategories: state => {
         return state.knowledgeBankCategories;

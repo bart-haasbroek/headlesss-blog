@@ -1,9 +1,8 @@
 <template>
-  <nav class="toc">
-    <!-- {{ toc }} -->
+  <nav class="toc" v-if="toc.length > 0">
     <ul class="toc__nav">
-      <li v-for="link of toc" :key="link.id" :class="'depth-' + link.depth">
-        <NuxtLink :to="`#${link.id}`">{{ link.text }}</NuxtLink>
+      <li v-for="link of toc" :key="link.slug" :class="'depth-' + link.depth">
+        <NuxtLink :to="`#${link.slug}`">{{ link.content }}</NuxtLink>
       </li>
     </ul>
   </nav>
@@ -30,7 +29,7 @@ export default {
     + li {
       margin-top: 8px;
     }
-    &.depth-3 {
+    &.depth-2 {
       margin-left: 20px;
       list-style: circle;
     }

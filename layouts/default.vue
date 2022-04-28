@@ -5,7 +5,9 @@
         class="top-bar d-flex hide-sm w-100 content-wrapper align-items-center"
       >
         <div class="logo">
-          <nuxt-img :src="$siteConfig.logo" quality="75" />
+          <NuxtLink to="/">
+            <nuxt-img :src="$siteConfig.logo" quality="75" />
+          </NuxtLink>
         </div>
         <div class="d-flex justify-content-end flex-grow-1">
           <main-navigation :menuItems="menu"></main-navigation>
@@ -45,9 +47,10 @@ export default {
   background: var(--color-dark);
 }
 .logo {
-  width: 50px;
-  height: 50px;
-  background: red;
+  width: 160px;
+  img {
+    max-height: 100%;
+  }
 }
 
 .layout-wrapper {

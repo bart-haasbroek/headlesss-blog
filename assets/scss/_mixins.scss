@@ -1,0 +1,15 @@
+@mixin font-face($font-name, $path, $ext, $weight: normal, $style: normal) {
+  @font-face {
+    font-family: quote($font-name);
+    src: local(quote($font-name)), url($path + "." + $ext) format($ext);
+    font-weight: $weight;
+    font-style: $style;
+    // font-family: quote($font-name);
+    // src: url($path + ".ttf");
+    // src: url($path + ".eot?#iefix") format("embedded-opentype"),
+    //   url($path + ".ttf") format("truetype"),
+    //   url($path + ".svg##{$font-name}") format("svg");
+    // font-weight: $weight;
+    // font-style: $style;
+  }
+}

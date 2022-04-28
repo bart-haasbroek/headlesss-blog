@@ -8,27 +8,18 @@
       <breadcrumbs></breadcrumbs>
       <!-- <img :src="headerImage" alt="" /> -->
       <!-- <nuxt-img :src="headerImage"></nuxt-img> -->
-      <!-- <toc :toc="pageContent.acf.contentText"></toc> -->
-      <smart-content :html="pageContent.acf.contentText"></smart-content>
+      <toc :toc="pageContent.toc"></toc>
+      <smart-content :html="pageContent.content.rendered"></smart-content>
     </div>
   </div>
 </template>
 
 <script>
 import Vue from "vue";
-
+import { buildSeoHead } from "../../helpers/build-seo-head";
 export default Vue.extend({
   head() {
-    return {
-      title: this.pageContent.yoast_head_json.title,
-      meta: [
-        {
-          hid: "description",
-          name: "description",
-          content: this.pageContent.yoast_head_json.description,
-        },
-      ],
-    };
+    return buildSeoHead(this.pageContent);
   },
   computed: {
     pageContent() {

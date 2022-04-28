@@ -13,32 +13,23 @@
 
 <script>
 import Vue from "vue";
-
+import { buildSeoHead } from "../helpers/build-seo-head";
 //todo
-// button stylen
-// globaal dingen opzetten
 // Toc
+// button stylen
 // pagination
+// searching
 // interne links
 // turbo snippets
 // page not exist --> 404
 // faq page
-// image optimizer
-// amp pages
 // mail uitzoeken
+// image optimizer mobile
+// amp pages
 
 export default Vue.extend({
   head() {
-    return {
-      title: this.pageContent.yoast_head_json.title,
-      meta: [
-        {
-          hid: "description",
-          name: "description",
-          content: this.pageContent.yoast_head_json.description,
-        },
-      ],
-    };
+    return buildSeoHead(this.pageContent);
   },
   computed: {
     pageContent() {

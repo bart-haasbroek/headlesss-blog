@@ -1,21 +1,12 @@
+import { modules, modulesSettings } from './config/modules'
+import head from './config/head'
+
 export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
 
   // Global page headers: https://go.nuxtjs.dev/config-head
-  head: {
-    title: 'Headless blog',
-    meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1.0, viewport-fit=cover' },
-      { hid: 'description', name: 'description', content: '' },
-      { name: "apple-mobile-web-app-capable", content: 'yes' },
-      { name: 'apple-mobile-web-app-status-bar-style', content: 'black-translucent'},
-    ],
-    link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-    ]
-  },
+  head: head,
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: ["@/assets/scss/index.scss"],
@@ -30,54 +21,26 @@ export default {
   generate: {
     fallback: true
   },
+  ignorePaths: [
+    "/kennisbank"
+  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
-  components: true,
+  // components: true,
+  components: [
+    // Equivalent to { path: '~/components' }
+    '~/components',
+    { path: '~/components/small-components', extensions: ['vue'] }
+  ],
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
+    '~/modules/generator'
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [
-    [
-      "bootstrap-vue/nuxt",
-      {
-        icons: true,
-      },
-    ],
-    // https://go.nuxtjs.dev/axios
-    '@nuxtjs/axios',
-    // https://go.nuxtjs.dev/pwa
-    '@nuxtjs/pwa',
-    '@nuxt/image',
-  ],
-
-  image: {
-    // The screen sizes predefined by `@nuxt/image`:
-    screens: {
-      xs: 320,
-      sm: 640,
-      md: 768,
-      lg: 1024,
-      xl: 1280,
-      xxl: 1536,
-      '2xl': 1536
-    },
-    domains: ['http://localhost', 'github.com', 'http://localhost:8888', 'http://localhost:8888/', 'http://localhost:8888/headless/']
-  },
-
-  // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {
-    baseURL: '/',
-  },
-
-  // PWA module configuration: https://go.nuxtjs.dev/pwa
-  pwa: {
-    manifest: {
-      lang: 'en'
-    }
-  },
+  modules: modules,
+  ...modulesSettings,
 
   // Content module configuration: https://go.nuxtjs.dev/config-content
   content: {},

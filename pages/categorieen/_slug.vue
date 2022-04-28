@@ -17,19 +17,11 @@
 
 <script>
 import Vue from "vue";
+import { buildSeoHead } from "../../helpers/build-seo-head";
 
 export default Vue.extend({
   head() {
-    return {
-      title: this.currentCategory.yoast_head_json.title,
-      meta: [
-        {
-          hid: "description",
-          name: "description",
-          content: this.currentCategory.yoast_head_json.description,
-        },
-      ],
-    };
+    return buildSeoHead(this.pageContent);
   },
   computed: {
     posts() {

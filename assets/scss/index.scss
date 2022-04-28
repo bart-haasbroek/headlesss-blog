@@ -1,20 +1,22 @@
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
+@import "./mixins";
+@import "./fonts";
 @import "./variables";
 @import "./global";
 @import "./text";
+
 html {
-  font-size: 16px;
-  word-spacing: 1px;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
-  font-family: "Open Sans", sans-serif;
 }
 
 body {
   background: #dfdfdf;
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  word-spacing: 1px;
   // overflow-y: hidden;
 }
 
@@ -27,6 +29,7 @@ body {
 
 img {
   display: block;
+  max-width: 100%;
 }
 
 input {

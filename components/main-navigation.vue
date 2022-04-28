@@ -20,7 +20,7 @@ export default {
 
 <style lang="scss" scoped>
 .navigation {
-  ul {
+  > ul {
     li {
       a {
         display: block;
@@ -34,8 +34,20 @@ export default {
           color: white;
         }
       }
+
+      ul {
+        display: none;
+      }
+
+      &:hover ul {
+        display: block;
+        position: absolute;
+        background: white;
+        z-index: 50;
+        width: 200px;
+      }
     }
-    li + li {
+    > li + li {
       margin-left: 20px;
     }
   }

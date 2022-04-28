@@ -26,18 +26,28 @@ Vue.directive('tooltip', {
             // tooltip.style.display = 'none';
         });
 
-        const tooltipText = document.createElement('div');
-        tooltipText.style.padding = '10px 20px';
-        const tooltipImage = document.createElement('img');
-
         const atags = el.getElementsByTagName('a');
         for (let item of atags) {
             item.addEventListener('mouseover', function() {
+            const tooltipText = document.createElement('div');
+            tooltipText.style.padding = '10px 20px';
+            let tooltipImage;
                 // tooltip.href = item.href;
                 // console.log('item', item.getAttribute('data-Id'));
                 const tooltipImageSrc = item.getAttribute('data-featured-image');
-                tooltipImage.src = tooltipImageSrc || null;
-                tooltipImage.style.width = '100%';
+                console.log('tooltipImageSrc', tooltipImageSrc);
+                if (tooltipImageSrc) {
+                    tooltipImage = document.createElement('img');
+                    tooltipImage.src = tooltipImageSrc;
+                    tooltipImage.style.width = '100%';
+                }
+
+                if (tooltipImage) {
+                    console.log('toevoegen', tooltipImage);
+                    tooltip.appendChild(tooltipImage);
+                }
+
+                tooltip.appendChild(tooltipText);
 
                 const tooltipExcerpt = item.getAttribute('data-excerpt');
                 tooltipText.innerHTML = tooltipExcerpt;
@@ -51,12 +61,12 @@ Vue.directive('tooltip', {
                 tooltip.style.left = (item.offsetLeft - center) + 'px';
             });
             item.addEventListener('mouseout', function() {
+
                 // tooltip.style.opacity = 0;
                 // tooltip.style.display = 'none';
             });
         }
-        tooltip.appendChild(tooltipImage);
-        tooltip.appendChild(tooltipText);
+
         // aanzetten om te activeren
         //el.appendChild(tooltip);
     }

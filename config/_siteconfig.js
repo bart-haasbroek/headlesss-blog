@@ -1,6 +1,7 @@
 export default {
     siteName: 'Headless blog',
-    logo: '/images/flamingo-spullen-logo1.png', // 'logo-component', // or '/logo.svg' for regular image
+    logo: '/images/placeholder-logo.png',
+    hostname: 'https://example123.com',
     googleAnalytics: {
         on: true,
         id: process.env.GOOGLE_ANALYTICS_ID
@@ -20,11 +21,6 @@ export default {
           url: "/kennisbank",
           title: "Kennisbank",
           icon: "house-door",
-        },
-        {
-          url: "/over-ons",
-          title: "Over de app",
-          icon: "info-circle",
         },
     ],
 }

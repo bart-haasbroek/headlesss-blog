@@ -1,5 +1,5 @@
 <template>
-  <div class="page-wrapper">
+  <div class="page-wrapper" v-if="pageContent">
     <page-header :title="pageContent.title.rendered"></page-header>
     <div class="content-wrapper page-content">
       <breadcrumbs></breadcrumbs>
@@ -38,19 +38,11 @@
 <script>
 import Vue from "vue";
 import { mapGetters } from "vuex";
+import { buildSeoHead } from "../../helpers/build-seo-head";
 
 export default Vue.extend({
   head() {
-    return {
-      title: this.pageContent.yoast_head_json.title,
-      meta: [
-        {
-          hid: "description",
-          name: "description",
-          content: this.pageContent.yoast_head_json.description,
-        },
-      ],
-    };
+    return buildSeoHead(this.pageContent);
   },
   computed: {
     ...mapGetters({

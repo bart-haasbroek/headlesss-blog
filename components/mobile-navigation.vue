@@ -1,7 +1,13 @@
 <template>
   <div class="mobile-bar w-100">
     <div class="mobile-bar__inner d-flex align-items-center">
-      <div class="logo"></div>
+      <div class="logo">
+        <nuxt-img
+          :src="$siteConfig.logo"
+          quality="60"
+          alt="featured-image of the current page"
+        />
+      </div>
       <div class="d-flex flex-grow-1 justify-content-end">
         <div class="hamburger" @click="$emit('onMenuClick')">
           <div class="hamburger-center"></div>
@@ -32,9 +38,7 @@ export default {
 
 <style lang="scss" scoped>
 .logo {
-  width: 50px;
-  height: 50px;
-  background: red;
+  width: 110px;
 }
 .mobile-bar {
   top: 0;

@@ -4,6 +4,7 @@
       :title="pageContent.title.rendered"
       :image="pageContent.featured_image_url"
     ></page-header>
+    <line-word>moooi</line-word>
     <div class="content-wrapper page-content--space-top">
       <app-grid :columns="3">
         <blog-item
@@ -18,18 +19,10 @@
 
 <script>
 import { mapGetters } from "vuex";
+import { buildSeoHead } from "../helpers/build-seo-head";
 export default {
   head() {
-    return {
-      title: this.pageContent.yoast_head_json.title,
-      meta: [
-        {
-          hid: "description",
-          name: "description",
-          content: this.pageContent.yoast_head_json.description,
-        },
-      ],
-    };
+    return buildSeoHead(this.pageContent);
   },
   computed: {
     ...mapGetters({
