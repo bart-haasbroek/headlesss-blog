@@ -1,4 +1,4 @@
-import siteConfig from './_siteConfig';
+import _siteconfig from './_siteconfig';
 
 let axiosSettings = {
     baseURL: '/',
@@ -30,7 +30,7 @@ export const modules = [
     '@nuxtjs/sitemap',
     'bootstrap-vue/nuxt'
   ]
-  if (siteConfig.googleAnalytics.on && siteConfig.googleAnalytics.id) {
+  if (_siteconfig.googleAnalytics.on && _siteconfig.googleAnalytics.id) {
     modules.push('@nuxtjs/google-gtag')
   }
 
@@ -46,9 +46,9 @@ export const modules = [
         }
     },
     sitemap: {
-        hostname: siteConfig.hostname,
+        hostname: _siteconfig.hostname,
     },
     'google-gtag': {
-      id: siteConfig.googleAnalytics.id
+      id: _siteconfig.googleAnalytics.id
     }
   }

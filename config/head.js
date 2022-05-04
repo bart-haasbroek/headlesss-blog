@@ -1,6 +1,6 @@
-import _siteConfig from "./_siteconfig";
+import _siteconfig from "./_siteconfig";
 export default {
-    title: _siteConfig.siteName,
+    title: _siteconfig.siteName,
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1.0, viewport-fit=cover' },

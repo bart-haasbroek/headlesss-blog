@@ -1,5 +1,5 @@
-import SiteConfig from '~/config/_siteConfig'
+import _siteconfig from '~/config/_siteconfig'
 
 export default (_, inject) => {
-  inject('siteConfig', SiteConfig)
+  inject('siteConfig', _siteconfig)
 }

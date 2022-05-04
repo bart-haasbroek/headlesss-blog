@@ -1,5 +1,5 @@
 import axios from 'axios';
-import _siteConfig from "../config/_siteconfig";
+import _siteconfig from "../config/_siteconfig";
 
 export const state = () => ({
     posts: undefined,
@@ -12,7 +12,7 @@ export const mutations = {
         })
     },
 }
-const contentModules = _siteConfig.contentModules;
+const contentModules = _siteconfig.contentModules;
 
 export const actions = {
     async nuxtServerInit({ commit, state }) {
