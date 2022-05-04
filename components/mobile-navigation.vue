@@ -18,7 +18,7 @@
     <div class="mobile-navigation" v-if="menuIsOpen">
       <ul class="nav-list">
         <li v-for="(menuItem, index) in menuItems" :key="index">
-          <nuxtLink :to="menuItem.url">
+          <nuxtLink :to="menuItem.url" @click.native="$emit('onNavigate')">
             {{ menuItem.title }}
           </nuxtLink>
         </li>

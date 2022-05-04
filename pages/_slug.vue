@@ -15,10 +15,11 @@
 import Vue from "vue";
 import { buildSeoHead } from "../helpers/build-seo-head";
 //todo
-// Toc
 // button stylen
+// slider maken
 // pagination
 // searching
+// Toc stylen
 // interne links
 // turbo snippets
 // page not exist --> 404

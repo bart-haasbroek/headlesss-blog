@@ -66,9 +66,29 @@ export default {
 
   &__item {
     list-style-type: none;
+
+    &:last-child {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 700px;
+    }
   }
 }
 .breadcrumbs__item + .breadcrumbs__item {
   margin-left: 6px;
+}
+
+@media only screen and (max-width: 767px) {
+  .breadcrumbs__item {
+    font-size: 12px;
+
+    &:last-child {
+      max-width: 200px;
+    }
+  }
+  .icon {
+    font-size: 10px;
+  }
 }
 </style>

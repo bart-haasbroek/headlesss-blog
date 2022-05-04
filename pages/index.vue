@@ -4,7 +4,6 @@
       :title="pageContent.title.rendered"
       :image="pageContent.featured_image_url"
     ></page-header>
-    <line-word>moooi</line-word>
     <div class="content-wrapper page-content--space-top">
       <app-grid :columns="3">
         <blog-item

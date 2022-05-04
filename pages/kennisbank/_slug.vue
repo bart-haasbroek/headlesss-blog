@@ -3,7 +3,7 @@
     <page-header v-if="headerImage" :image="headerImage"></page-header>
     <div class="content-wrapper content-wrapper--narrow page-content">
       <breadcrumbs></breadcrumbs>
-      <div v-html="pageContent.content.rendered"></div>
+      <smart-content :html="pageContent.content.rendered"></smart-content>
     </div>
   </div>
 </template>

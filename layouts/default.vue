@@ -18,6 +18,7 @@
         :menuItems="menu"
         :menuIsOpen="menuIsOpen"
         @onMenuClick="toggleMenu"
+        @onNavigate="menuIsOpen = false"
       ></mobile-navigation>
       <Nuxt />
       <footer class="footer">footer hier</footer>

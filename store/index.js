@@ -1,48 +1,18 @@
 import axios from 'axios';
-// import router from '@/router'
+import _siteConfig from "../config/_siteConfig";
 
 export const state = () => ({
     posts: undefined,
 });
 
 export const mutations = {
-    // fillContent(state, payload) {
-    //     const {posts, pages, knowledgeBank, knowledgeBankCategories, tags, categories, options} = payload;
-    //     state.posts = posts;
-    //     state.pages = pages;
-    //     state.knowledgeBank = knowledgeBank;
-    //     state.knowledgeBankCategories = knowledgeBankCategories;
-    //     state.tags = tags;
-    //     state.categories = categories;
-    //     state.options = options;
-    // },
     fillContent(state, payload) {
         payload.forEach((content) => {
-            state[content.name] = content.data;
+            state[content.storeKey] = content.data;
         })
     },
 }
-
-// const apiEndpoint = 'http://apibase.ga/testsite';
-const apiEndpoint = 'http://localhost:8888/headless';
-const contentModules = [
-    {
-        endpoint: `${apiEndpoint}/wp-json/wp/v2/posts`,
-        name: 'posts'
-    },
-    {
-        endpoint: `${apiEndpoint}/wp-json/wp/v2/pages`,
-        name: 'pages'
-    },
-    {
-        endpoint: `${apiEndpoint}/wp-json/wp/v2/knowledgebank`,
-        name: 'knowledgebank'
-    },
-    {
-        endpoint: `${apiEndpoint}/wp-json/wp/v2/knowledgebank_categories`,
-        name: 'knowledgeBankCategories'
-    },
-];
+const contentModules = _siteConfig.contentModules;
 
 export const actions = {
     async nuxtServerInit({ commit, state }) {
@@ -50,28 +20,11 @@ export const actions = {
         const responses = await Promise.all(contentModules.map(async module => {
             const res = await axios.get(module.endpoint);
             return {
-                name: module.name,
+                storeKey: module.storeKey,
                 data: res.data
             }
         }));
         commit('fillContent', responses);
-
-    // const postsReq = axios.get(`${apiEndpoint}/wp-json/wp/v2/posts`);
-    // const pagesReq = axios.get(`${apiEndpoint}/wp-json/wp/v2/pages`);
-    // const knowledgeBankReq = axios.get(`${apiEndpoint}/wp-json/wp/v2/knowledgebank`);
-    // const knowledgeBankCategoriesReq = axios.get(`${apiEndpoint}/wp-json/wp/v2/knowledgebank_categories`);
-    // const optionsReq = axios.get(`${apiEndpoint}/wp-json/acf/v3/options/options`);
-    // const tagsReq = axios.get(`${apiEndpoint}/wp-json/wp/v2/tags`);
-    // const categoriesReq = axios.get(`${apiEndpoint}/wp-json/wp/v2/categories`);
-
-    // // you could also use destructuring to have an array of responses
-    // const data = await axios.all([postsReq, pagesReq]).then(
-    //     axios.spread((posts, pages) => {
-    //     commit('fillContent', {
-    //         posts: posts.data,
-    //         pages: pages.data
-    //     });
-    // }));
     },
 }
 
