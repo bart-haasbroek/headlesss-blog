@@ -1,6 +1,6 @@
 
-// const apiEndpoint = 'http://apibase.ga/testsite';
-const apiEndpoint = 'http://localhost:8888/headless';
+const apiEndpoint = 'http://apibase.ga/testsite';
+// const apiEndpoint = 'http://localhost:8888/headless';
 
 export default {
     siteName: 'Headless blog',
