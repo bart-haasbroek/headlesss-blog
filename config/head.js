@@ -1,4 +1,4 @@
-import _siteConfig from "./_siteConfig";
+import _siteConfig from "./_siteconfig";
 export default {
     title: _siteConfig.siteName,
     meta: [

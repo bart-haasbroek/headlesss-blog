@@ -1,5 +1,5 @@
 <script>
-import _siteConfig from "../config/_siteConfig";
+import _siteConfig from "../config/_siteconfig";
 const contentModules = _siteConfig.contentModules;
 
 function updateinternalLinks(html, modules) {

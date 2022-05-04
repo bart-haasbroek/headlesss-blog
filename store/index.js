@@ -1,5 +1,5 @@
 import axios from 'axios';
-import _siteConfig from "../config/_siteConfig";
+import _siteConfig from "../config/_siteconfig";
 
 export const state = () => ({
     posts: undefined,
