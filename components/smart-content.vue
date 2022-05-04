@@ -3,6 +3,11 @@ import _siteconfig from "../config/_siteconfig";
 const contentModules = _siteconfig.contentModules;
 
 function updateinternalLinks(html, modules) {
+  // html = html.replace(/page\//g, "");
+  // html = html.replace(/post/g, "berichten");
+  // html = html.replace(/knowledgebank/g, "kennisbank");
+  // return html;
+  //todo do dynamisch
   modules.forEach((module) => {
     //set title to prevent double slashes (//)
     const title = module.routeName ? module.title : module.title + "/";
@@ -14,7 +19,7 @@ function updateinternalLinks(html, modules) {
 export default {
   render: function (createElement) {
     let html = this.html ? this.html.replace(/\s\s+/g, " ") : ""; // replace double space
-    // html = updateinternalLinks(html, contentModules);
+    html = updateinternalLinks(html, contentModules);
 
     let array = [...html.matchAll(/<img.* src=\"(.*?)\"/g)];
     array.forEach((match) => {
