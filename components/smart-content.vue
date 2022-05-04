@@ -14,7 +14,7 @@ function updateinternalLinks(html, modules) {
 export default {
   render: function (createElement) {
     let html = this.html ? this.html.replace(/\s\s+/g, " ") : ""; // replace double space
-    html = updateinternalLinks(html, contentModules);
+    // html = updateinternalLinks(html, contentModules);
 
     let array = [...html.matchAll(/<img.* src=\"(.*?)\"/g)];
     array.forEach((match) => {
