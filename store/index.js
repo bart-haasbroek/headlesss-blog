@@ -3,27 +3,43 @@ import _siteconfig from "../config/_siteconfig";
 
 export const state = () => ({
     posts: undefined,
+    pagination: {}
 });
 
 export const mutations = {
     fillContent(state, payload) {
         payload.forEach((content) => {
             state[content.storeKey] = content.data;
+            state['pagination'][content.storeKey] = content.pagination;
         })
     },
 }
 const contentModules = _siteconfig.contentModules;
+const apiEndpoint = _siteconfig.apiEndpoint;
 
 export const actions = {
     async nuxtServerInit({ commit, state }) {
         console.log('ServerInit');
         const responses = await Promise.all(contentModules.map(async module => {
             const res = await axios.get(module.endpoint);
+            // console.log('res', res.headers['x-wp-totalpages']);
+            const totalPosts = !!res.headers['x-wp-total'] ? res.headers['x-wp-total'] : null;
+            const totalOfPages = !!res.headers['x-wp-totalpages'] ? res.headers['x-wp-totalpages'] : null;
+            const pagination = (totalPosts && totalOfPages) ? {
+                totalPosts,
+                totalOfPages
+            } : null;
             return {
                 storeKey: module.storeKey,
-                data: res.data
+                data: res.data,
+                pagination,
             }
         }));
+        commit('fillContent', responses);
+    },
+    async getPostbyPage({ commit, state }) {
+        console.log('ServerInit');
+        const responses = await axios.get(`${apiEndpoint}/?page=2`);
         commit('fillContent', responses);
     },
 }

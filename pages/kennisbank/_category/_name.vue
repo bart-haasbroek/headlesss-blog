@@ -10,7 +10,10 @@
         <app-card v-for="(post, index) in posts" :key="index">
           <h4>
             <NuxtLink
-              :to="{ name: 'kennisbank-slug', params: { slug: post.slug } }"
+              :to="{
+                name: 'kennisbank-slug',
+                params: { slug: post.slug },
+              }"
             >
               {{ post.title.rendered }}
             </NuxtLink>

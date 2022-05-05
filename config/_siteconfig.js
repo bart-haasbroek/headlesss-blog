@@ -1,6 +1,6 @@
 
-const apiEndpoint = 'http://apibase.ga/testsite';
-// const apiEndpoint = 'http://localhost:8888/headless';
+// const apiEndpoint = 'https://www.apibase.ga/learntodraw';
+const apiEndpoint = 'http://localhost:8888/headless';
 
 export default {
     siteName: 'Headless blog',
@@ -21,7 +21,7 @@ export default {
       {
         title: 'post',
         routeName: 'berichten',
-        endpoint: `${apiEndpoint}/wp-json/wp/v2/posts`,
+        endpoint: `${apiEndpoint}/wp-json/wp/v2/posts?per_page=3`,
         storeKey: 'posts'
       },
       {
