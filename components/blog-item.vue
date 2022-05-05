@@ -1,6 +1,6 @@
 <template>
   <div class="blog-item" v-if="item">
-    <div class="blog-item__image">
+    <div class="blog-item__image" v-if="item.featured_image_url">
       <NuxtLink
         :to="{ name: 'berichten-slug', params: { slug: item.slug } }"
         aria-label="blog-image-link"
