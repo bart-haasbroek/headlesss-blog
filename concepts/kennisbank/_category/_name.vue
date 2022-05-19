@@ -5,12 +5,15 @@
       :title="currentCategory.name"
     ></page-header>
     <div class="content-wrapper content-wrapper--narrow page-content">
-      <breadcrumbs :adjustments="breadCrumbAdjustments"></breadcrumbs>
+      <breadcrumbs></breadcrumbs>
       <app-grid columns="3">
         <app-card v-for="(post, index) in posts" :key="index">
           <h4>
             <NuxtLink
-              :to="{ name: 'kennisbank-slug', params: { slug: post.slug } }"
+              :to="{
+                name: 'kennisbank-slug',
+                params: { slug: post.slug },
+              }"
             >
               {{ post.title.rendered }}
             </NuxtLink>
@@ -28,16 +31,6 @@ import { buildSeoHead } from "../../../helpers/build-seo-head";
 export default Vue.extend({
   head() {
     return buildSeoHead(this.pageContent);
-  },
-  data() {
-    return {
-      breadCrumbAdjustments: [
-        {
-          word: "categorieen",
-          replace: "",
-        },
-      ],
-    };
   },
   computed: {
     posts() {

@@ -1,6 +1,6 @@
 
-const apiEndpoint = 'http://apibase.ga/testsite';
-// const apiEndpoint = 'http://localhost:8888/headless';
+// const apiEndpoint = 'https://www.apibase.ga/learntodraw';
+const apiEndpoint = 'http://localhost:8888/headless';
 
 export default {
     siteName: 'Headless blog',
@@ -22,13 +22,14 @@ export default {
         title: 'post',
         routeName: 'berichten',
         endpoint: `${apiEndpoint}/wp-json/wp/v2/posts`,
-        storeKey: 'posts'
+        storeKey: 'posts',
+        per_page: 2
       },
       {
         title: 'knowledgebank',
         routeName: 'kennisbank',
         endpoint: `${apiEndpoint}/wp-json/wp/v2/knowledgebank`,
-        storeKey: 'knowledgebank'
+        storeKey: 'knowledgebank',
       },
       {
         title: 'categorieen',
@@ -50,7 +51,7 @@ export default {
           icon: "house-door",
         },
         {
-          url: "/berichten",
+          url: "/berichten/pagina/1",
           title: "Berichten",
           icon: "house-door",
         },

@@ -19,14 +19,14 @@ import { buildSeoHead } from "../helpers/build-seo-head";
 // slider maken
 // pagination
 // searching
-// Toc stylen
-// interne links
 // turbo snippets
 // page not exist --> 404
 // faq page
 // mail uitzoeken
 // image optimizer mobile
 // amp pages
+// Toc stylen
+// interne links - voorkomen dat content wordt gereplaced
 
 export default Vue.extend({
   head() {

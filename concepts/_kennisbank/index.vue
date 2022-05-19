@@ -7,7 +7,7 @@
           <h4>
             <NuxtLink
               :to="{
-                name: 'kennisbank-category-name',
+                name: 'kennisbank-categorieen-category',
                 params: { category: category.slug },
               }"
             >

@@ -26,9 +26,24 @@
 
 <script>
 export default {
+  props: {
+    adjustments: {
+      type: Array,
+      required: false,
+    },
+  },
   computed: {
     breadcrumbs() {
-      const pathArray = this.$route.path.split("/");
+      let path = this.$route.path;
+      if (this.adjustments) {
+        this.adjustments.forEach((adjustment) => {
+          const { word, replace } = adjustment;
+          path = path.replace(word, replace);
+        });
+      }
+      path = path.replace("pagina/1", "");
+      const pathArray = path.split("/");
+
       pathArray.shift();
       const breadcrumbs = pathArray.reduce((breadcrumbArray, path, idx) => {
         if (path) {
