@@ -52,6 +52,9 @@ export default Vue.extend({
   head() {
     return buildSeoHead(this.pageContent);
   },
+  middleware({ redirect }) {
+    return redirect("301", "/berichten/pagina/1");
+  },
   computed: {
     ...mapGetters({
       // pageOnePosts: "getPosts",

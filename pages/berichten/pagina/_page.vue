@@ -2,7 +2,16 @@
   <div class="page-wrapper" v-if="pageContent">
     <page-header :title="pageContent.title.rendered"></page-header>
     <div class="content-wrapper page-content">
-      <breadcrumbs></breadcrumbs>
+      <breadcrumbs :adjustments="breadCrumbsChanges"></breadcrumbs>
+      <!-- <nuxt-link :to="{ name: 'berichten-pagina-page', params: { page: 1 } }"
+        >pagina 1</nuxt-link
+      >
+      <nuxt-link :to="{ name: 'berichten-pagina-page', params: { page: 2 } }"
+        >pagina 2</nuxt-link
+      >
+      <nuxt-link :to="{ name: 'berichten-pagina-page', params: { page: 3 } }"
+        >pagina 3</nuxt-link
+      > -->
       <app-grid partion="3-1">
         <app-grid>
           <blog-item
@@ -54,15 +63,24 @@ export default Vue.extend({
     pageContent() {
       return this.$store.getters.getPageBySlug("berichten");
     },
-  },
-  async asyncData({ params }) {
-    const apiEndpoint = `${baseApiEndpoint}&page=${params.page}`;
-    console.log("apiEndpoint", apiEndpoint);
-
-    const res = await axios.get(apiEndpoint);
-    const posts = res.data;
-    console.log("params.page", params.page);
-    return { posts };
+    posts() {
+      return this.$store.getters.getPagedContent(
+        "posts",
+        this.$route.params.page
+      );
+    },
+    breadCrumbsChanges() {
+      const wordToReplace =
+        this.$route.params.page === "1"
+          ? ""
+          : `pagina ${this.$route.params.page}`;
+      return [
+        {
+          word: `pagina/${this.$route.params.page}`,
+          replace: wordToReplace,
+        },
+      ];
+    },
   },
 });
 </script>

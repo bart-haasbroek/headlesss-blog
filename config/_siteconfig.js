@@ -21,14 +21,15 @@ export default {
       {
         title: 'post',
         routeName: 'berichten',
-        endpoint: `${apiEndpoint}/wp-json/wp/v2/posts?per_page=3`,
-        storeKey: 'posts'
+        endpoint: `${apiEndpoint}/wp-json/wp/v2/posts`,
+        storeKey: 'posts',
+        per_page: 2
       },
       {
         title: 'knowledgebank',
         routeName: 'kennisbank',
         endpoint: `${apiEndpoint}/wp-json/wp/v2/knowledgebank`,
-        storeKey: 'knowledgebank'
+        storeKey: 'knowledgebank',
       },
       {
         title: 'categorieen',
@@ -50,7 +51,7 @@ export default {
           icon: "house-door",
         },
         {
-          url: "/berichten",
+          url: "/berichten/pagina/1",
           title: "Berichten",
           icon: "house-door",
         },

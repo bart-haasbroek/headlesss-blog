@@ -3,14 +3,18 @@ import _siteconfig from "../config/_siteconfig";
 
 export const state = () => ({
     posts: undefined,
-    pagination: {}
+    pagination: {},
+    pagedContent: {}
 });
 
 export const mutations = {
     fillContent(state, payload) {
+        // console.log('payload', payload);
+
         payload.forEach((content) => {
             state[content.storeKey] = content.data;
             state['pagination'][content.storeKey] = content.pagination;
+            state['pagedContent'][content.storeKey] = content.all;
         })
     },
 }
@@ -21,18 +25,45 @@ export const actions = {
     async nuxtServerInit({ commit, state }) {
         console.log('ServerInit');
         const responses = await Promise.all(contentModules.map(async module => {
-            const res = await axios.get(module.endpoint);
-            // console.log('res', res.headers['x-wp-totalpages']);
+            const endpoint = !!module['per_page'] ? `${module.endpoint}?per_page=${module.per_page}` : module.endpoint;
+            const res = await axios.get(endpoint);
             const totalPosts = !!res.headers['x-wp-total'] ? res.headers['x-wp-total'] : null;
             const totalOfPages = !!res.headers['x-wp-totalpages'] ? res.headers['x-wp-totalpages'] : null;
+            let all;
+            let data = res.data;
+            if (!!module['per_page']) {
+                let paged = [];
+                for (let i = 2; i <= totalOfPages; i++) {
+                    paged.push(`${endpoint}&page=${i}`);
+                }
+
+                const pagedRes = await Promise.all(paged.map(async (r, i) => {
+                    const res2 = await axios.get(r);
+                    return res2.data
+                }));
+                all = pagedRes.reduce((list, curr, index) => {
+                    let count = index + 2;
+                    return {
+                    ...list,
+                    [count]: curr
+                    }
+                }, {1: res.data })
+
+                const allPosts = pagedRes.reduce((list, curr) => {
+                    return [...list, ...curr];
+                }, res.data);
+                data = allPosts;
+            }
+
             const pagination = (totalPosts && totalOfPages) ? {
                 totalPosts,
                 totalOfPages
             } : null;
             return {
                 storeKey: module.storeKey,
-                data: res.data,
+                data: data,
                 pagination,
+                all,
             }
         }));
         commit('fillContent', responses);
@@ -69,6 +100,9 @@ export const getters = {
     getPageBySlug: (_, getters) => (slug) => {
         const page = getters.getPages.find((p) => p.slug === slug);
         return page;
+    },
+    getPagedContent: state => (content, page) => {
+        return state.pagedContent[content][page];
     },
     getPostBySlug: (_, getters) => (id) => {
         const post = getters.getPosts.find((p) => p.slug === id);
