@@ -9,13 +9,14 @@ export default {
   head: head,
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: ["@/assets/scss/index.scss"],
+  css: ["@/assets/scss/index.scss", 'aos/dist/aos.css'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     { src: '~/plugins/globals.js' },
     { src: '~/plugins/preview.client.js' },
     { src: '~/plugins/tooltip.client.js' },
+    { src: '~/plugins/aos.js', ssr: false, mode: 'client' },
   ],
 
   generate: {
