@@ -3,9 +3,14 @@
     <page-header
       :image="pageContent.featured_image_url"
       :title="pageContent.title.rendered"
-    ></page-header>
-    <div class="content-wrapper content-wrapper--narrow page-content text-big">
-      <breadcrumbs></breadcrumbs>
+    >
+      <template #headerBottom>
+        <breadcrumbs></breadcrumbs>
+      </template>
+    </page-header>
+    <div
+      class="content-wrapper content-wrapper--narrow page-content text-big py-4"
+    >
       <!-- <img :src="headerImage" alt="" /> -->
       <!-- <nuxt-img :src="headerImage"></nuxt-img> -->
       <toc :toc="pageContent.toc"></toc>

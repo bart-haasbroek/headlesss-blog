@@ -5,18 +5,24 @@
         class="header__title d-flex align-items-center content-wrapper"
         :class="'justify-content-' + titlePos"
       >
-        <div>
+        <div class="text-center">
           <h1 v-if="title">{{ title }}</h1>
           <slot></slot>
         </div>
       </div>
-      <div class="header__image" v-if="image">
+      <div
+        v-if="$slots.headerBottom"
+        class="header-bottom content-wrapper py-2"
+      >
+        <slot name="headerBottom"></slot>
+      </div>
+      <!-- <div class="header__image" v-if="image">
         <nuxt-img
           :src="image"
           quality="60"
           alt="featured-image of the current page"
         />
-      </div>
+      </div> -->
     </div>
   </header>
 </template>
@@ -84,7 +90,6 @@ export default {
 .header {
   position: relative;
   width: 100%;
-  background: var(--color-primary);
 
   &__top {
     padding-top: 16px;
@@ -112,16 +117,23 @@ export default {
   }
 
   &__inner {
-    height: 250px;
     position: relative;
+    border-radius: 0 0 40px 40px;
+    background: aliceblue;
   }
 
   &__title {
     height: 100%;
     width: 100%;
     position: relative;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    // text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
     z-index: 10;
+    padding-bottom: 30px;
+
+    h1 {
+      color: var(--color-dark);
+      font-size: 46px;
+    }
   }
 
   &__image {
@@ -142,7 +154,7 @@ export default {
       position: absolute;
       left: 0;
       top: 0;
-      background: var(--color-dark);
+      // background: var(--color-dark);
       width: 100%;
       height: 100%;
       opacity: 0.7;

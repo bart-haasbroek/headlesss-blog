@@ -1,10 +1,25 @@
 <template>
   <div class="page-wrapper">
-    <page-header
+    <div class="homepage-header">
+      <div class="content-wrapper h-100">
+        <div class="row h-100">
+          <div class="col-6 d-flex align-items-center">
+            <div>
+              <h1>Leer mooie creaties maken met pro create</h1>
+              <button class="mt-3 button">Naar berichten</button>
+            </div>
+          </div>
+          <div class="col-6 h-100 pt-2 pb-5">
+            <img class="mx-auto" src="images/test-img1.svg" alt="" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <page-header
       :title="pageContent.title.rendered"
       :image="pageContent.featured_image_url"
-    ></page-header>
-    <div class="content-wrapper page-content--space-top">
+    ></page-header> -->
+    <stroke title="Onze laatse blogs:">
       <app-grid :columns="3">
         <blog-item
           v-for="(post, index) in posts"
@@ -12,7 +27,10 @@
           :item="post"
         ></blog-item>
       </app-grid>
-    </div>
+    </stroke>
+    <stroke :isBlue="true" title="Blijf geinsprireerd!">
+      <input type="text" />
+    </stroke>
   </div>
 </template>
 
@@ -33,3 +51,17 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+.homepage-header {
+  height: 550px;
+  max-height: 80vh;
+  background: #f0f8ff;
+  border-radius: 0 0 40px 40px;
+
+  h1 {
+    font-size: 62px;
+    font-weight: 600;
+  }
+}
+</style>

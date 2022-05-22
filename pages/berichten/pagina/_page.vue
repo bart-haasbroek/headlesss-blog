@@ -1,8 +1,15 @@
 <template>
   <div class="page-wrapper" v-if="pageContent">
-    <page-header :title="pageContent.title.rendered"></page-header>
-    <div class="content-wrapper page-content">
-      <breadcrumbs :adjustments="breadCrumbsChanges"></breadcrumbs>
+    <page-header :title="'Creatief blog'">
+      <p class="header-text">
+        Waar nieuwe dingen worden geleerd, <br />
+        inspiratie wordt opgedaan en de beste tips worden gegeven
+      </p>
+      <template #headerBottom>
+        <breadcrumbs :adjustments="breadCrumbsChanges"></breadcrumbs>
+      </template>
+    </page-header>
+    <div class="content-wrapper page-content pt-4">
       <!-- <nuxt-link :to="{ name: 'berichten-pagina-page', params: { page: 1 } }"
         >pagina 1</nuxt-link
       >
@@ -89,5 +96,10 @@ export default Vue.extend({
 .category-link {
   padding: 3px 0;
   display: block;
+}
+
+.header-text {
+  font-size: 18px;
+  font-weight: 600;
 }
 </style>

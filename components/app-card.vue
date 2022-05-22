@@ -26,7 +26,7 @@ export default {
     padding: 8px 14px;
     border-radius: 10px;
     background: var(--color-light);
-    box-shadow: 0px 1px 4px -1px rgba(0, 0, 0, 0.4);
+    box-shadow: 0px 0px 10px 3px rgb(0 0 0 / 7%);
   }
 }
 </style>

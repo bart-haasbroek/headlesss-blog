@@ -43,12 +43,14 @@ export default {
 </script>
 
 <style lang="scss">
+$border-radius: 18px;
 .blog-item {
   width: 100%;
   background: var(--color-light);
-  border-radius: 12px;
+  border-radius: $border-radius;
   overflow: hidden;
   box-shadow: 0px 1px 4px -1px rgba(0, 0, 0, 0.4);
+  box-shadow: 0px 0px 10px 3px rgb(0 0 0 / 7%);
 
   &__title {
     margin: 14px 0 8px;
@@ -60,8 +62,10 @@ export default {
 
   &__image {
     width: 100%;
-    height: 200px;
+    height: 230px;
     position: relative;
+    border-radius: $border-radius;
+    overflow: hidden;
 
     a {
       position: relative;

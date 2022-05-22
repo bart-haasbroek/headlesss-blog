@@ -23,7 +23,7 @@ export default {
         routeName: 'berichten',
         endpoint: `${apiEndpoint}/wp-json/wp/v2/posts`,
         storeKey: 'posts',
-        per_page: 2
+        per_page: 20
       },
       {
         title: 'knowledgebank',

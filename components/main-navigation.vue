@@ -28,6 +28,7 @@ export default {
         border-radius: 4px;
         transition: all 0.4s ease;
         color: var(--color-dark);
+        font-weight: 500;
 
         &:hover {
           background: var(--color-dark);

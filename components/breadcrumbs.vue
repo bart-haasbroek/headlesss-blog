@@ -16,7 +16,7 @@
         >
           {{ item.title }}
         </nuxt-link>
-        <span v-else>
+        <span v-else class="breadcrumbs__current-page">
           {{ item.title }}
         </span>
       </li>
@@ -88,6 +88,10 @@ export default {
       text-overflow: ellipsis;
       max-width: 700px;
     }
+  }
+
+  &__current-page {
+    font-weight: 600;
   }
 }
 .breadcrumbs__item + .breadcrumbs__item {

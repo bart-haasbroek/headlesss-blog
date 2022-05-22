@@ -1,16 +1,16 @@
 <template>
   <main>
     <div class="layout-wrapper">
-      <div
-        class="top-bar d-flex hide-sm w-100 content-wrapper align-items-center"
-      >
-        <div class="logo">
-          <NuxtLink to="/">
-            <nuxt-img :src="$siteConfig.logo" quality="75" />
-          </NuxtLink>
-        </div>
-        <div class="d-flex justify-content-end flex-grow-1">
-          <main-navigation :menuItems="menu"></main-navigation>
+      <div class="top-bar hide-sm w-100">
+        <div class="d-flex content-wrapper align-items-center">
+          <div class="logo">
+            <NuxtLink to="/">
+              <nuxt-img :src="$siteConfig.logo" quality="75" />
+            </NuxtLink>
+          </div>
+          <div class="d-flex justify-content-end flex-grow-1">
+            <main-navigation :menuItems="menu"></main-navigation>
+          </div>
         </div>
       </div>
       <mobile-navigation
