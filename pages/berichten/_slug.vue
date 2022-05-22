@@ -11,10 +11,12 @@
     <div
       class="content-wrapper content-wrapper--narrow page-content text-big py-4"
     >
-      <!-- <img :src="headerImage" alt="" /> -->
-      <!-- <nuxt-img :src="headerImage"></nuxt-img> -->
-      <toc :toc="pageContent.toc"></toc>
-      <smart-content :html="pageContent.content.rendered"></smart-content>
+      <app-card>
+        <!-- <img :src="headerImage" alt="" /> -->
+        <!-- <nuxt-img :src="headerImage"></nuxt-img> -->
+        <toc :toc="pageContent.toc"></toc>
+        <smart-content :html="pageContent.content.rendered"></smart-content>
+      </app-card>
     </div>
   </div>
 </template>

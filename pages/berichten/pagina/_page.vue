@@ -1,10 +1,10 @@
 <template>
   <div class="page-wrapper" v-if="pageContent">
-    <page-header :title="'Creatief blog'">
-      <p class="header-text">
-        Waar nieuwe dingen worden geleerd, <br />
-        inspiratie wordt opgedaan en de beste tips worden gegeven
-      </p>
+    <page-header
+      :title="'Creatief blog'"
+      payoffText="Waar nieuwe dingen worden geleerd, <br />
+        inspiratie wordt opgedaan en de beste tips worden gegeven"
+    >
       <template #headerBottom>
         <breadcrumbs :adjustments="breadCrumbsChanges"></breadcrumbs>
       </template>

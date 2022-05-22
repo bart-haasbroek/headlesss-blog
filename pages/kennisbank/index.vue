@@ -1,6 +1,9 @@
 <template>
   <div class="page-wrapper">
-    <page-header :title="pageContent.title.rendered"></page-header>
+    <page-header
+      :title="pageContent.title.rendered"
+      payoffText="Alle woorden en termen bij elkaar wat te maken heeft met pro create en design"
+    ></page-header>
     <div class="content-wrapper page-content--space-top">
       <app-grid columns="3">
         <app-card v-for="(category, index) in categories" :key="index">

@@ -52,12 +52,17 @@ export default {
         },
         {
           url: "/berichten/pagina/1",
-          title: "Berichten",
+          title: "Blog",
           icon: "house-door",
         },
         {
           url: "/kennisbank",
-          title: "Kennisbank",
+          title: "Woordenlijst",
+          icon: "house-door",
+        },
+        {
+          url: "/handig",
+          title: "Handig",
           icon: "house-door",
         },
     ],

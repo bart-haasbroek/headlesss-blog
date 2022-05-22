@@ -8,11 +8,13 @@
         <div class="text-center">
           <h1 v-if="title">{{ title }}</h1>
           <slot></slot>
+          <p v-if="payoffText" class="payoffText" v-html="payoffText"></p>
+          <slot></slot>
         </div>
       </div>
       <div
         v-if="$slots.headerBottom"
-        class="header-bottom content-wrapper py-2"
+        class="header-bottom content-wrapper pb-2"
       >
         <slot name="headerBottom"></slot>
       </div>
@@ -35,6 +37,10 @@ export default {
       default: false,
     },
     title: {
+      type: String,
+      default: "",
+    },
+    payoffText: {
       type: String,
       default: "",
     },

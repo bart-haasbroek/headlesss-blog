@@ -23,13 +23,45 @@
       <app-grid :columns="3">
         <blog-item
           v-for="(post, index) in posts"
+          data-aos="fade-up"
+          data-aos-offset="-250"
+          :data-aos-delay="index * 200"
+          data-aos-duration="700"
+          data-aos-easing="ease-in-out"
+          data-aos-anchor-placement="top-center"
           :key="index"
           :item="post"
         ></blog-item>
       </app-grid>
     </stroke>
-    <stroke :isBlue="true" title="Blijf geinsprireerd!">
+    <stroke
+      :isBlue="true"
+      title="Blijf geinsprireerd!"
+      data-aos="fade-In"
+      data-aos-offset="-200"
+      data-aos-duration="1000"
+      data-aos-easing="ease-in-out"
+      data-aos-anchor-placement="top-center"
+    >
       <input type="text" />
+    </stroke>
+    <stroke
+      title="Handig om te gebruiken:"
+      data-aos="fade-In"
+      data-aos-offset="-200"
+      data-aos-duration="1000"
+      data-aos-easing="ease-in-out"
+      data-aos-anchor-placement="top-center"
+    >
+      <app-grid :columns="3">
+        <app-card>
+          <h4>Patroon tester</h4>
+          <p>
+            Zelf een mooi patroon ontworpen? Test hier hoe het eruitziet door
+            hem als achtergrond te gebruiken!
+          </p>
+        </app-card>
+      </app-grid>
     </stroke>
   </div>
 </template>
