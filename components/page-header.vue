@@ -6,10 +6,9 @@
         :class="'justify-content-' + titlePos"
       >
         <div class="text-center">
-          <h1 v-if="title">{{ title }}</h1>
+          <h1 v-if="title" class="mb-0">{{ title }}</h1>
           <slot></slot>
           <p v-if="payoffText" class="payoffText" v-html="payoffText"></p>
-          <slot></slot>
         </div>
       </div>
       <div

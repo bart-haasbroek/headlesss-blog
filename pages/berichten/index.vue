@@ -1,6 +1,11 @@
 <template>
   <div class="page-wrapper" v-if="pageContent">
-    <page-header :title="pageContent.title.rendered"></page-header>
+    <page-header :title="'Creative blog'">
+      <p class="header-text">
+        Waar nieuwe dingen worden geleerd, inspiratie wordt opgedaan en de beste
+        tips worden gegeven
+      </p>
+    </page-header>
     <div class="content-wrapper page-content">
       <breadcrumbs></breadcrumbs>
       hier: {{ $route.query.page }}

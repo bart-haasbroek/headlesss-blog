@@ -19,6 +19,39 @@ export default {
     { src: '~/plugins/aos.js', ssr: false, mode: 'client' },
   ],
 
+  // router: {
+  //   scrollBehavior: async (to, from, savedPosition) => {
+  //     if (savedPosition) {
+  //       return savedPosition
+  //     }
+
+  //     const findEl = async (hash, x) => {
+  //       return document.querySelector(hash) ||
+  //         new Promise((resolve, reject) => {
+  //           if (x > 50) {
+  //             return resolve()
+  //           }
+  //           setTimeout(() => { resolve(findEl(hash, ++x || 1)) }, 100)
+  //         })
+  //     }
+
+  //     if (to.hash) {
+  //       let el = await findEl(to.hash);
+  //       console.log('el', el, el.offsetTop, el.scrollTop);
+
+  //       if ('scrollBehavior' in document.documentElement.style) {
+  //         console.log('jaaa');
+  //         return window.scrollTo({ top: el.offsetTop, behavior: 'smooth' })
+  //       } else {
+  //         console.log('jaaa');
+  //         return window.scrollTo(0, el.offsetTop)
+  //       }
+  //     }
+
+  //     return { x: 0, y: 0 }
+  //   }
+  // },
+
   generate: {
     fallback: true,
     routes: ['/berichten/pagina/1']
@@ -32,7 +65,8 @@ export default {
   components: [
     // Equivalent to { path: '~/components' }
     '~/components',
-    { path: '~/components/small-components', extensions: ['vue'] }
+    { path: '~/components/small-components', extensions: ['vue'] },
+    { path: '~/components/ui', extensions: ['vue'] }
   ],
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules

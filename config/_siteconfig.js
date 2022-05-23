@@ -1,6 +1,6 @@
 
-const apiEndpoint = 'https://www.apibase.ga/learntodraw';
-// const apiEndpoint = 'http://localhost:8888/headless';
+// const apiEndpoint = 'https://www.apibase.ga/learntodraw';
+const apiEndpoint = 'http://localhost:8888/headless';
 
 export default {
     siteName: 'Headless blog',
@@ -58,6 +58,16 @@ export default {
         {
           url: "/kennisbank",
           title: "Woordenlijst",
+          icon: "house-door",
+        },
+        {
+          url: "/",
+          title: "Reviews",
+          icon: "house-door",
+        },
+        {
+          url: "/",
+          title: "Downloads",
           icon: "house-door",
         },
         {

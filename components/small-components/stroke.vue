@@ -4,6 +4,7 @@
       <div v-if="title" class="text-center mb-4">
         <h3 class="stroke__title">{{ title }}</h3>
       </div>
+      <slot name="title"></slot>
       <slot></slot>
     </div>
   </div>
@@ -25,6 +26,10 @@ export default {
 <style lang="scss" scoped>
 .stroke {
   background: #fff;
+
+  + .stroke:not(.stroke--blue) {
+    padding-top: 0 !important;
+  }
 
   &__title {
     font-size: 28px;

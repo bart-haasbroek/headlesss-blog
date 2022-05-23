@@ -13,6 +13,13 @@
       </NuxtLink>
     </div>
     <div class="blog-item__inner">
+      <div class="mb-2">
+        <span
+          class="blog-item__category"
+          v-for="category of item.categoryList"
+          >{{ category.name }}</span
+        >
+      </div>
       <div class="blog-item__title">
         <h2>
           <NuxtLink
@@ -51,6 +58,11 @@ $border-radius: 18px;
   overflow: hidden;
   box-shadow: 0px 1px 4px -1px rgba(0, 0, 0, 0.4);
   box-shadow: 0px 0px 10px 3px rgb(0 0 0 / 7%);
+  transition: all 0.4s ease;
+
+  &:hover {
+    transform: scale(1.02);
+  }
 
   &__title {
     margin: 14px 0 8px;
@@ -58,6 +70,12 @@ $border-radius: 18px;
 
   &__inner {
     padding: 10px 22px 20px;
+  }
+
+  &__category {
+    & + .blog-item__category {
+      margin-left: 12px;
+    }
   }
 
   &__image {

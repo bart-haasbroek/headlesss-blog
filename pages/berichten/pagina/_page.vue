@@ -45,6 +45,15 @@
               </ul>
             </div>
           </app-card>
+          <app-card>
+            <subscribe-to-newsletter
+              title="Blijf geïnspireerd!"
+              class="mt-2"
+              :isColumn="true"
+              @submit="subscribe($event)"
+            >
+            </subscribe-to-newsletter>
+          </app-card>
         </div>
       </app-grid>
     </div>
