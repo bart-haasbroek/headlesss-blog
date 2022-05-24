@@ -60,20 +60,20 @@ export default {
           title: "Woordenlijst",
           icon: "house-door",
         },
-        {
-          url: "/",
-          title: "Reviews",
-          icon: "house-door",
-        },
-        {
-          url: "/",
-          title: "Downloads",
-          icon: "house-door",
-        },
-        {
-          url: "/handig",
-          title: "Handig",
-          icon: "house-door",
-        },
+        // {
+        //   url: "/",
+        //   title: "Reviews",
+        //   icon: "house-door",
+        // },
+        // {
+        //   url: "/",
+        //   title: "Downloads",
+        //   icon: "house-door",
+        // },
+        // {
+        //   url: "/handig",
+        //   title: "Handig",
+        //   icon: "house-door",
+        // },
     ],
 }
