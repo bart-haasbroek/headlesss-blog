@@ -1,27 +1,29 @@
 <template>
-  <div
-    class="subscribe-to-newsletter"
-    :class="{ 'subscribe-to-newsletter--column': isColumn }"
-  >
-    <h3 class="subscribe-to-newsletter__title mb-4 text-center">
-      {{ title }}
-    </h3>
-    <div class="subscribe-to-newsletter__wrapper d-flex">
-      <input
-        v-model="emailAdddress"
-        type="text"
-        class="subscribe-to-newsletter__input py-2 px-3"
-      />
-      <app-button
-        class="subscribe-to-newsletter__button"
-        :class="{ 'no-radius': isColumn }"
-        color="white"
-        @click="submit()"
-      >
-        Inschrijven
-      </app-button>
+  <form netlify name="contactUs" method="POST" netlify-honeypot="bot-field">
+    <div
+      class="subscribe-to-newsletter"
+      :class="{ 'subscribe-to-newsletter--column': isColumn }"
+    >
+      <h3 class="subscribe-to-newsletter__title mb-4 text-center">
+        {{ title }}
+      </h3>
+      <div class="subscribe-to-newsletter__wrapper d-flex">
+        <input
+          v-model="emailAdddress"
+          type="text"
+          class="subscribe-to-newsletter__input py-2 px-3"
+        />
+        <app-button
+          class="subscribe-to-newsletter__button"
+          :class="{ 'no-radius': isColumn }"
+          color="white"
+          @click="submit()"
+        >
+          Inschrijven
+        </app-button>
+      </div>
     </div>
-  </div>
+  </form>
 </template>
 
 <script>
