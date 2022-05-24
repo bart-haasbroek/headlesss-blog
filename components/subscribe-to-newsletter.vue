@@ -1,5 +1,6 @@
 <template>
   <form netlify name="contactUs" method="POST" netlify-honeypot="bot-field">
+    <input type="hidden" name="contactUs" value="pizzaOrder" />
     <div
       class="subscribe-to-newsletter"
       :class="{ 'subscribe-to-newsletter--column': isColumn }"
