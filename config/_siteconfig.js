@@ -1,6 +1,6 @@
 
-// const apiEndpoint = 'https://www.apibase.ga/learntodraw';
-const apiEndpoint = 'http://localhost:8888/headless';
+const apiEndpoint = 'https://www.apibase.ga/learntodraw';
+// const apiEndpoint = 'http://localhost:8888/headless';
 
 export default {
     siteName: 'Headless blog',
