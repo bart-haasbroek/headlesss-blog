@@ -1,10 +1,5 @@
 <template>
-  <form
-    data-netlify="true"
-    name="contactUs"
-    method="post"
-    netlifsy-honeypot="bot-field"
-  >
+  <form netlify name="contactUs" method="post" netlifsy-honeypot="bot-field">
     <input type="hidden" name="form-name" value="vue-tea" />
     <div
       class="subscribe-to-newsletter"
