@@ -28,7 +28,7 @@
           ></blog-item>
         </app-grid>
         <div>
-          <app-card title="Categorieen">
+          <!-- <app-card title="Categorieen">
             <div class="category-list">
               <ul class="nav-list">
                 <li v-for="(category, index) in categories" :key="index">
@@ -44,16 +44,40 @@
                 </li>
               </ul>
             </div>
-          </app-card>
+          </app-card> -->
+
+          <h4 class="border-title">Categorieën</h4>
+          <div class="category-list mb-3">
+            <ul class="nav-list">
+              <li v-for="(category, index) in categories" :key="index">
+                <NuxtLink
+                  class="category-link"
+                  :to="{
+                    name: 'categorieen-slug',
+                    params: { slug: category.slug },
+                  }"
+                >
+                  {{ category.name }}
+                </NuxtLink>
+              </li>
+            </ul>
+          </div>
           <app-card>
             <subscribe-to-newsletter
-              title="Blijf geïnspireerd!"
+              title="Schrijf je in voor de nieuwsbrief"
               class="mt-2"
               :isColumn="true"
-              @submit="subscribe($event)"
             >
             </subscribe-to-newsletter>
           </app-card>
+          <!-- <app-card class="mt-4" title="Blijf geïnspireerd!">
+            <subscribe-to-newsletter
+              title="Schrijf je in voor de nieuwsbrief"
+              class="mt-2"
+              :isColumn="true"
+            >
+            </subscribe-to-newsletter>
+          </app-card> -->
         </div>
       </app-grid>
     </div>
@@ -110,5 +134,11 @@ export default Vue.extend({
 .header-text {
   font-size: 18px;
   font-weight: 600;
+}
+
+.border-title {
+  border-bottom: 1px solid;
+  padding-bottom: 10px;
+  margin-bottom: 5px;
 }
 </style>

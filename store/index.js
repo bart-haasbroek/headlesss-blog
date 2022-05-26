@@ -31,6 +31,7 @@ export const actions = {
             const totalOfPages = !!res.headers['x-wp-totalpages'] ? res.headers['x-wp-totalpages'] : null;
             let all;
             let data = res.data;
+
             if (!!module['per_page']) {
                 let paged = [];
                 for (let i = 2; i <= totalOfPages; i++) {
@@ -54,6 +55,7 @@ export const actions = {
                 }, res.data);
                 data = allPosts;
             }
+
 
             const pagination = (totalPosts && totalOfPages) ? {
                 totalPosts,

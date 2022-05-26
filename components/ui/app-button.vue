@@ -1,5 +1,5 @@
 <template>
-  <button @click="$emit('click')" class="button">
+  <button :disabled="disabled" @click="$emit('click')" class="button">
     <slot></slot>
   </button>
 </template>
@@ -96,5 +96,10 @@ export default {
   border-radius: 12px;
   background: #42d3ec;
   color: white;
+  transition: opacity 0.3s ease;
+
+  &:disabled {
+    opacity: 0.4;
+  }
 }
 </style>

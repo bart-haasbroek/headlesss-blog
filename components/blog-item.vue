@@ -14,11 +14,18 @@
     </div>
     <div class="blog-item__inner">
       <div class="mb-2">
-        <span
+        <NuxtLink
           class="blog-item__category"
-          v-for="category of item.categoryList"
-          >{{ category.name }}</span
+          v-for="(category, index) of item.categoryList"
+          :key="'cat-' + index"
+          :to="{
+            name: 'categorieen-slug',
+            params: { slug: category.slug },
+          }"
         >
+          {{ category.name
+          }}<template v-if="index < item.categoryList.length - 1">,</template>
+        </NuxtLink>
       </div>
       <div class="blog-item__title">
         <h2>
@@ -50,22 +57,23 @@ export default {
 </script>
 
 <style lang="scss">
-$border-radius: 18px;
+$border-radius: 20px;
 .blog-item {
   width: 100%;
   background: var(--color-light);
   border-radius: $border-radius;
   overflow: hidden;
-  box-shadow: 0px 1px 4px -1px rgba(0, 0, 0, 0.4);
-  box-shadow: 0px 0px 10px 3px rgb(0 0 0 / 7%);
+  // box-shadow: 0px 1px 4px -1px rgba(0, 0, 0, 0.4);
+  // box-shadow: 0px 0px 10px 3px rgb(0 0 0 / 7%);
   transition: all 0.4s ease;
 
   &:hover {
     transform: scale(1.02);
   }
 
-  &__title {
+  &__title h2 {
     margin: 14px 0 8px;
+    font-size: 20px;
   }
 
   &__inner {
@@ -73,8 +81,11 @@ $border-radius: 18px;
   }
 
   &__category {
+    color: #688095;
+    font-weight: 400;
+    font-size: 14px;
     & + .blog-item__category {
-      margin-left: 12px;
+      margin-left: 5px;
     }
   }
 
@@ -96,7 +107,7 @@ $border-radius: 18px;
         width: 100%;
         height: 100%;
         background: var(--color-dark);
-        opacity: 0.8;
+        opacity: 0.2;
         display: block;
         top: 0;
       }
@@ -121,7 +132,7 @@ $border-radius: 18px;
     a {
       color: var(--color-primary);
       border-radius: 4px;
-      font-weight: bold;
+      font-weight: 500;
       font-size: 14px;
     }
   }

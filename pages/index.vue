@@ -21,6 +21,7 @@
       <app-grid :columns="4">
         <app-card
           v-for="(highlight, index) in highlights"
+          :key="'highlight' + index"
           data-aos="fade-up"
           data-aos-offset="-250"
           :data-aos-delay="index * 200"
@@ -33,6 +34,17 @@
           <app-button>bekijk</app-button>
         </app-card>
       </app-grid>
+    </stroke>
+    <stroke
+      :isBlue="true"
+      data-aos="fade-In"
+      data-aos-offset="-200"
+      data-aos-duration="1000"
+      data-aos-easing="ease-in-out"
+      data-aos-anchor-placement="top-center"
+    >
+      <subscribe-to-newsletter title="Blijf geïnspireerd!">
+      </subscribe-to-newsletter>
     </stroke>
     <stroke title="Creatief blog">
       <app-grid :columns="3">
@@ -48,20 +60,6 @@
           :item="post"
         ></blog-item>
       </app-grid>
-    </stroke>
-    <stroke
-      :isBlue="true"
-      data-aos="fade-In"
-      data-aos-offset="-200"
-      data-aos-duration="1000"
-      data-aos-easing="ease-in-out"
-      data-aos-anchor-placement="top-center"
-    >
-      <subscribe-to-newsletter
-        title="Blijf geïnspireerd!"
-        @submit="subscribe($event)"
-      >
-      </subscribe-to-newsletter>
     </stroke>
   </div>
 </template>
@@ -98,11 +96,6 @@ export default {
         },
       ],
     };
-  },
-  methods: {
-    subscribe(event) {
-      console.log("event", event);
-    },
   },
   computed: {
     ...mapGetters({

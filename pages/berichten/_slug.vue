@@ -15,7 +15,10 @@
     >
       <app-card :noPadding="true">
         <div class="page-text__image mb-2">
-          <nuxt-img :src="pageContent.featured_image_url"></nuxt-img>
+          <nuxt-img
+            v-if="pageContent.featured_image_url"
+            :src="pageContent.featured_image_url"
+          ></nuxt-img>
         </div>
         <!-- <img :src="headerImage" alt="" /> -->
         <div class="page-text__article px-4 py-4">

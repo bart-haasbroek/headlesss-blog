@@ -24,13 +24,13 @@ export default {
 <style lang="scss" scoped>
 .app-card {
   &__title {
-    margin-bottom: 10px;
+    margin-bottom: 16px;
   }
   &__content {
     padding: 8px 14px;
-    border-radius: 10px;
+    border-radius: 20px;
     background: var(--color-light);
-    box-shadow: 0px 0px 10px 3px rgb(0 0 0 / 7%);
+    // box-shadow: 0px 0px 10px 3px rgb(0 0 0 / 7%);
   }
 
   &.no-padding {

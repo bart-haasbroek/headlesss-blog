@@ -28,7 +28,7 @@ export default {
   background: #fff;
 
   + .stroke:not(.stroke--blue) {
-    padding-top: 0 !important;
+    // padding-top: 0 !important;
   }
 
   &__title {
@@ -39,4 +39,7 @@ export default {
     background: aliceblue;
   }
 }
+// .stroke--blue + .stroke {
+//   padding-top: 0 !important;
+// }
 </style>

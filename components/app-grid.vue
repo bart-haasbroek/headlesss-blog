@@ -28,7 +28,7 @@ export default {
 .app-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-gap: 24px;
+  grid-gap: 36px;
 
   &.columns-amount-2 {
     grid-template-columns: repeat(2, 1fr);

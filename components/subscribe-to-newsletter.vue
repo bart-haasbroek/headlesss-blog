@@ -1,37 +1,45 @@
 <template>
-  <form netlify name="contactUs" method="post" netlifsy-honeypot="bot-field">
-    <input type="hidden" name="form-name" value="vue-tea" />
-    <div
-      class="subscribe-to-newsletter"
-      :class="{ 'subscribe-to-newsletter--column': isColumn }"
-    >
-      <h3 class="subscribe-to-newsletter__title mb-4 text-center">
-        {{ title }}
-      </h3>
-      <div class="subscribe-to-newsletter__wrapper d-flex">
-        <input
-          v-model="emailAdddress"
-          type="text"
-          class="subscribe-to-newsletter__input py-2 px-3"
-        />
-        <app-button
-          class="subscribe-to-newsletter__button"
-          :class="{ 'no-radius': isColumn }"
-          color="white"
-          @click="submit()"
-        >
-          Inschrijven
-        </app-button>
-      </div>
+  <div
+    class="subscribe-to-newsletter"
+    :class="{ 'subscribe-to-newsletter--column': isColumn }"
+  >
+    <h3 class="subscribe-to-newsletter__title mb-4 text-center">
+      {{ title }}
+    </h3>
+    <div class="subscribe-to-newsletter__wrapper d-flex">
+      <input
+        v-model="emailAdddress"
+        placeholder="je emailadres"
+        type="email"
+        class="subscribe-to-newsletter__input py-2 px-3"
+      />
+      <app-button
+        :disabled="!emailAdddress"
+        class="subscribe-to-newsletter__button"
+        :class="{ 'no-radius': isColumn }"
+        color="white"
+        @click="submit()"
+      >
+        Inschrijven
+      </app-button>
     </div>
-  </form>
+    <div class="text-center mt-3" v-if="successMessage">
+      {{ successMessage }}
+    </div>
+    <div class="text-center mt-3" v-if="errorMessage">
+      {{ errorMessage }}
+    </div>
+  </div>
 </template>
 
 <script>
+import axios from "axios";
 export default {
   data() {
     return {
       emailAdddress: "",
+      successMessage: "",
+      errorMessage: "",
     };
   },
   props: {
@@ -43,9 +51,34 @@ export default {
     },
   },
   methods: {
-    submit() {
-      this.$emit("submit", this.emailAdddress);
-      this.emailAdddress = "";
+    async submit() {
+      const validEmail = !!this.validateEmail(this.emailAdddress);
+      if (validEmail) {
+        const { data } = await axios.get(
+          "http://localhost:8888/api/post-to-airtable?email=" +
+            this.emailAdddress
+        );
+        if (data === "success") {
+          this.emailAdddress = "";
+          this.successMessage = "Het inschrijven is gelukt! Bedankt";
+
+          setTimeout(() => {
+            this.successMessage = "";
+          }, 3000);
+        }
+      } else {
+        this.errorMessage = "Dit is geen geldig email adres";
+        setTimeout(() => {
+          this.errorMessage = "";
+        }, 3000);
+      }
+    },
+    validateEmail(email) {
+      return String(email)
+        .toLowerCase()
+        .match(
+          /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        );
     },
   },
 };
@@ -82,6 +115,7 @@ export default {
     &__input {
       border-radius: 8px;
       margin-bottom: 16px;
+      font-size: 14px;
     }
   }
 }
